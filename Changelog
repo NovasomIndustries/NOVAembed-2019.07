@@ -1,0 +1,8 @@
+Entries are sorted chronologically from oldest to youngest within each release,
+releases are sorted from youngest to oldest.
+
+version 2019.1.01 : 
+- Added new versioning system
+- Fixed scripts generation for M7 , P and U5
+version 2019.1.00 : 
+- Initial release

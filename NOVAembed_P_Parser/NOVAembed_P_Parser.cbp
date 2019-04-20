@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="NOVAembed_P_Parser" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/NOVAembed_P_Parser" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="/Devel/NOVAsom_SDK/DtbUserWorkArea/PClass_bspf/temp/SDL_test.bspf" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/NOVAembed_P_Parser" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-pg" />
+			<Add option="-g" />
+		</Compiler>
+		<Linker>
+			<Add option="-pg" />
+		</Linker>
+		<Unit filename="include/NOVAembed_P_parser.h" />
+		<Unit filename="include/header.h" />
+		<Unit filename="lvds_defs/lvds_1024x600_ch0_parserinput" />
+		<Unit filename="lvds_defs/lvds_1024x600_ch1_parserinput" />
+		<Unit filename="lvds_defs/lvds_1024x768_ch0_parserinput" />
+		<Unit filename="lvds_defs/lvds_1024x768_ch1_parserinput" />
+		<Unit filename="lvds_defs/lvds_1280x800_ch0_parserinput" />
+		<Unit filename="lvds_defs/lvds_1280x800_ch1_parserinput" />
+		<Unit filename="lvds_defs/lvds_800x480_ch0_parserinput" />
+		<Unit filename="lvds_defs/lvds_800x480_ch1_parserinput" />
+		<Unit filename="lvds_defs/lvds_800x600_ch0_parserinput" />
+		<Unit filename="lvds_defs/lvds_800x600_ch1_parserinput" />
+		<Unit filename="src/dts_gen.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/iomux.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Debug" />
+	<File name="src/main.c" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="480" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/iomux.c" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2773" topLine="81" />
+		</Cursor>
+	</File>
+	<File name="include/NOVAembed_U_parser.h" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2460" topLine="82" />
+		</Cursor>
+	</File>
+	<File name="include/header.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="36" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="src/dts_gen.c" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6403" topLine="212" />
+		</Cursor>
+	</File>
+</CodeBlocks_layout_file>

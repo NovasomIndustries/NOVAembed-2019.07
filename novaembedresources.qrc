@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Icons/code_blocks.png</file>
+        <file>Icons/meld.png</file>
+        <file>Icons/copy32x32.png</file>
+        <file>Icons/qtcreator.png</file>
+        <file>Icons/android-logo.png</file>
+        <file>Icons/KitKatLogo.png</file>
+        <file>Icons/linux-logo.jpg</file>
+        <file>Icons/u-boot-logo.png</file>
+        <file>Icons/buildroot.jpg</file>
+        <file>Icons/micro-sd.jpg</file>
+        <file>Icons/ArchLinux.png</file>
+        <file>Icons/GeexBox.png</file>
+        <file>Icons/OpenMandriva_LX2015.png</file>
+        <file>Icons/OpenSuse_12.3_DarthMouth.png</file>
+        <file>Icons/OpenWrt_14.07.png</file>
+        <file>Icons/OpenWrt_15.05.png</file>
+        <file>Icons/Ubuntu_14.10.png</file>
+        <file>Icons/j9.jpg</file>
+        <file>Icons/j13.jpg</file>
+        <file>Icons/valid.png</file>
+        <file>Icons/invalid.png</file>
+        <file>Icons/NOVAsomP800x480.png</file>
+        <file>Icons/NOVAsomPgradient800x480.png</file>
+        <file>Icons/Web-Icon-Blue.png</file>
+        <file>Icons/pdf-icon.png</file>
+        <file>Icons/animation.gif</file>
+        <file>Icons/NovaEmbedIcon.png</file>
+        <file>Icons/NXP-Logo.png</file>
+        <file>Icons/Qualcomm_Snapdragon_logo.png</file>
+        <file>Icons/allwinnerlogo.png</file>
+        <file>Icons/NXP-LayerScapeLogo.png</file>
+        <file>Icons/RockchipLogo.jpg</file>
+        <file>Icons/nindlogo.png</file>
+    </qresource>
+</RCC>

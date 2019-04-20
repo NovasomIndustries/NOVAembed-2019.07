@@ -1,0 +1,6 @@
+NOVAembed
+2019.1.1
+    Removed N1 support
+    Added M7 BSPF
+2019.1
+    Initial version

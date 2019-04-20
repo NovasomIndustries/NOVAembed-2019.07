@@ -1,0 +1,22 @@
+# depslib dependency file v1.0
+1510320786 source:/Devel/NOVAsom_SDK/Qt/NOVAembed/NOVAembed/NOVAembed_U_Parser/src/dts_gen.c
+	"../include/NOVAembed_U_parser.h"
+	"../include/header.h"
+
+1510064676 /Devel/NOVAsom_SDK/Qt/NOVAembed/NOVAembed/NOVAembed_U_Parser/include/NOVAembed_U_parser.h
+	<stdio.h>
+	<stdlib.h>
+	<strings.h>
+	<string.h>
+	<libgen.h>
+
+1510320493 /Devel/NOVAsom_SDK/Qt/NOVAembed/NOVAembed/NOVAembed_U_Parser/include/header.h
+	<dt-bindings/input/input.h>
+
+1510064676 source:/Devel/NOVAsom_SDK/Qt/NOVAembed/NOVAembed/NOVAembed_U_Parser/src/iomux.c
+	"../include/NOVAembed_U_parser.h"
+
+1510067813 source:/Devel/NOVAsom_SDK/Qt/NOVAembed/NOVAembed/NOVAembed_U_Parser/src/main.c
+	"../include/NOVAembed_U_parser.h"
+	"../include/header.h"
+

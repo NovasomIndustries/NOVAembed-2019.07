@@ -1,0 +1,22 @@
+        lvds-channel@1 {
+                fsl,data-mapping = "spwg" ;
+                fsl,data-width = <18>;
+                primary;
+                status = "okay";
+                crtc = "ipu1-di1";
+                display-timings {
+                        native-mode = <&timing_wvga1>;
+                        timing_wvga1: LVDS-wvga800x480 {
+                                clock-frequency = <33000000>;
+                                hactive = <800>;
+                                vactive = <480>;
+                                hback-porch = <220>;
+                                hfront-porch = <40>;
+                                vback-porch = <21>;
+                                vfront-porch = <7>;
+                                hsync-len = <60>;
+                                vsync-len = <10>;
+                        };
+                };
+        };
+
