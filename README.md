@@ -5,7 +5,7 @@ Summary:
 ========
 This repo contains the NOVAembed 2019.07 graphic tool for the NOVAsom_SDK 2019.01 Novasom Industries 
 project.
-Can be downloaded at at [NOVAsomIndustries on github](https://novasomindustries.github.io/NOVAembed-2019.07/).
+Can be downloaded at at [NOVAsomIndustries on github](https://github.com/NovasomIndustries/NOVAembed-2019.07).
 ## Prerequisities
 A running Debian 9 or an equivalent virtual machine.
 ## Authors
