@@ -164,8 +164,6 @@ QString PixMapName="";
         system_pdf_viewer = "evince";
 
     /* Initialize user area */
-    if ( ! QDir(instpath+"/Blobs").exists() )
-        system("mkdir -p "+instpath.toLatin1()+"/Blobs");
     if ( ! QDir(instpath+"/Logs").exists() )
         system("mkdir -p "+instpath.toLatin1()+"/Logs");
     if ( ! QDir(instpath+"/Deploy").exists() )
@@ -857,15 +855,15 @@ QString line;
         ui->uSD_Device_comboBox->setCurrentText(uSD_Device);
         if ( ui->Board_comboBox->currentText() == "P Series")
         {
-            if ( !QFile(instpath+"/Blobs/"+NXP_P_SPL).exists() )
+            if ( !QFile(instpath+"/Bootloader/u-boot-novasomP-2015.04/"+NXP_P_SPL).exists() )
                 BootValid = "INVALID";
-            if ( !QFile(instpath+"/Blobs/"+NXP_P_UBOOT).exists() )
+            if ( !QFile(instpath+"/Bootloader/u-boot-novasomP-2015.04/"+NXP_P_UBOOT).exists() )
                 BootValid = "INVALID";
         }
 
         if ( ui->Board_comboBox->currentText() == "U5")
         {
-            if ( !QFile(instpath+"/Blobs/"+NXP_U_UBOOT).exists() )
+            if ( !QFile(instpath+"//Bootloader/u-boot-novasomU-2016.03/"+NXP_U_UBOOT).exists() )
                 BootValid = "INVALID";
         }
         if ( ui->Board_comboBox->currentText() == "M8")
@@ -874,7 +872,7 @@ QString line;
         if ( ui->Board_comboBox->currentText() == "M7")
         {
             BootValid = "OK";
-            int bootok;
+            int bootok=0;
             QString thepath;
             QFileInfo check_file1;
 
@@ -903,16 +901,7 @@ QString line;
                 BootValid = "INVALID";
                 std::cout << "novaembed.cpp : M7 idbloader not found\n"<< thepath.toLatin1().constData() <<"\n" << std::flush;
             }
-/*
-            if ( !QFile(instpath+"/Blobs/"+RK_M7_BOOT).exists() )
-                BootValid = "INVALID";
-            if ( !QFile(instpath+"/Blobs/"+RK_M7_TRUST).exists() )
-                BootValid = "INVALID";
-            if ( !QFile(instpath+"/Blobs/"+RK_M7_IDBLOADER).exists() )
-                BootValid = "INVALID";
-                */
         }
-
 
         if ( BootValid == "OK" )
         {
@@ -926,34 +915,30 @@ QString line;
         }
 
         if ( ui->Board_comboBox->currentText() == "P Series")
-            if ( !QFile(instpath+"/Blobs/"+NXP_P_BLOB_NAME).exists() )
+            if ( !QFile(instpath+"/Kernel/"+NXP_P_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "U5")
-            if ( !QFile(instpath+"/Blobs/"+NXP_U_BLOB_NAME).exists() )
+            if ( !QFile(instpath+"/Kernel/"+NXP_U_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "M8")
-            if ( !QFile(instpath+"/Blobs/"+QUALCOMM_BLOB_NAME).exists() )
+            if ( !QFile(instpath+"/Kernel/"+QUALCOMM_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "M7")
         {
             KernelValid = "OK";
-            int kernelok;
             QString thepath;
             QFileInfo check_file1;
             thepath=instpath+"/Kernel/"+RK_M7_KERNEL+"/arch/arm64/boot/Image";
             check_file1 = QFileInfo(thepath);
             if (check_file1.exists() && check_file1.isFile())
-                kernelok=1;
+            {
+                std::cout << "novaembed.cpp : M7 kernel found : "<<thepath.toLatin1().constData() <<"\n" << std::flush;
+            }
             else
             {
                 KernelValid = "INVALID";
                 std::cout << "novaembed.cpp : M7 kernel not found : "<<thepath.toLatin1().constData() <<"\n" << std::flush;
             }
-
-            /*
-            if ( !QFile(instpath+"/Blobs/"+RK_M7_BLOB_NAME).exists() )
-                KernelValid = "INVALID";
-                */
         }
         if ( KernelValid == "OK" )
         {

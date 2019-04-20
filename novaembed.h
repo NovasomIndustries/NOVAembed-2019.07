@@ -16,12 +16,15 @@
 #include <QDirIterator>
 
 #define INSTALLATION_PATH   "/Devel/NOVAsdk"
-#define BLOBS_PATH          "/Devel/NOVAsdk/Blobs/"
 
 #define RK_M7_KERNEL        "linux-4.4.167_M7"
+#define RK_M7_KERNEL_BIN    RK_M7_KERNEL+"/arch/arm64/boot/Image"
 #define QUALCOMM_KERNEL     "linux-4.11.0-QualcommLinaro"
+#define QUALCOMM_KERNEL_BIN QUALCOMM_KERNEL+"/arch/arm64/boot/Image"
 #define NXP_P_KERNEL        "linux-imx_4.1.15_1.2.0_ga"
+#define NXP_P_KERNEL_BIN    NXP_P_KERNEL+"/arch/arm/boot/zImage"
 #define NXP_U_KERNEL        "linux-imx_4.1.43"
+#define NXP_U_KERNEL_BIN    NXP_U_KERNEL+"/arch/arm/boot/zImage"
 
 #define RK_M7_BOOTPATH      "u-boot-novasomM7-2017.09"
 
@@ -34,19 +37,14 @@
 #define RK_M7_BOOT          "m7-uboot.img"
 #define RK_M7_TRUST         "m7-trust.img"
 #define RK_M7_IDBLOADER     "m7-idbloader.img"
-#define NXP_P_SPL           "p-SPL"
-#define NXP_P_UBOOT         "p-uboot.img"
-#define NXP_U_UBOOT         "u-uboot.imx"
+#define NXP_P_SPL           "SPL"
+#define NXP_P_UBOOT         "uboot.img"
+#define NXP_U_UBOOT         "uboot.imx"
 
 #define RK_M7_SOURCEME      "SourceMe64"
 #define QUALCOMM_SOURCEME   "SourceMe64"
 #define NXP_P_SOURCEME      "SourceMe32"
 #define NXP_U_SOURCEME      "SourceMe32"
-
-#define QUALCOMM_BLOB_NAME  "linux-qualcomm-4.11.0_Image"
-#define NXP_P_BLOB_NAME     "linux-nxp_p-4.1.15.2_zImage"
-#define NXP_U_BLOB_NAME     "linux-nxp_u-4.1.43_zImage"
-#define RK_M7_BLOB_NAME     "linux-rock_m7-4.4.167_Image"
 
 #define RK_M7_BOOTLOADER    "u-boot-novasomM7-2017.09"
 #define NXP_P_BOOTLOADER    "u-boot-novasomP-2015.04"

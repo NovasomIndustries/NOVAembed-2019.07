@@ -196,16 +196,16 @@ void NOVAembed::on_KernelXconfig_pushButton_clicked()
         update_status_bar("Kernel configuration done");
         KernelValid = "OK";
         if ( ui->Board_comboBox->currentText() == "P Series")
-            if ( !QFile(instpath+"/Blobs/"+NXP_P_BLOB_NAME).exists() )
+            if ( !QFile(instpath+"/Kernel/"+NXP_P_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "U5")
-            if ( !QFile(instpath+"/Blobs/"+NXP_U_BLOB_NAME).exists() )
+            if ( !QFile(instpath+"/Kernel/"+NXP_U_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "M8")
-            if ( !QFile(instpath+"/Blobs/"+QUALCOMM_BLOB_NAME).exists() )
+            if ( !QFile(instpath+"/Kernel/"+QUALCOMM_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "M7")
-            if ( !QFile(instpath+"/Blobs/"+RK_M7_BLOB_NAME).exists() )
+            if ( !QFile(instpath+"/Kernel/"+RK_M7_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( KernelValid == "OK" )
         {
