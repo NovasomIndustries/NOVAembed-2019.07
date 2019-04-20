@@ -118,42 +118,6 @@ QString PixMapName="";
         std::cout << "Network is up\n" << std::flush;
     }
 
-    if ( network_connected=="OKAY")
-    {
-        const char *cmd;
-        /*Retrieve SDK_Version*/
-        //QString Qcmd = "rm -rf /tmp/SDK_Version; cd /tmp; git clone https://github.com/NovasomIndustries/SDK_Version.git ";
-        QString Qcmd = "echo \"Here\" ";
-        QString fileName = "/tmp/SDK_Version/CurrentVersion";
-        QFile file(fileName);
-        QByteArray ba = Qcmd.toLatin1();
-        cmd = ba.data();
-        system(cmd);
-
-        if ( file.size() > 4 )
-        {
-            QString strKeyConf("NOVAembed 2019.7 Remote Configuration/");
-            QSettings * config = 0;
-            config = new QSettings( fileName, QSettings::IniFormat );
-            gitVersion = config->value( strKeyConf + "Version", "r").toString();
-            if ( gitVersion !=  Version )
-            {
-                updates_found="UPDATES_FOUND";
-                std::cout << updates_found.toLatin1().constData() << "\n" << std::flush;
-            }
-
-            gitToolsVersion = config->value( strKeyConf + "ToolsVersion", "r").toString();
-            repo_server = config->value( strKeyConf + "SystemRepoServer", "r").toString();
-            backup_repo_server = config->value( strKeyConf + "BackupSystemRepoServer", "r").toString();
-
-            std::cout << "Version : " << Version.toLatin1().constData() << "\n" << std::flush;
-            std::cout << "gitVersion : " << gitVersion.toLatin1().constData() << "\n" << std::flush;
-            std::cout << "Tools : " << ToolsVersion.toLatin1().constData() << "\n" << std::flush;
-            std::cout << "gitToolVersion : " << gitToolsVersion.toLatin1().constData() << "\n" << std::flush;
-            std::cout << repo_server.toLatin1().constData() << "\n" << std::flush;
-            std::cout << backup_repo_server.toLatin1().constData() << "\n" << std::flush;
-        }
-    }
     if ( QFile("/usr/bin/kwrite").exists())
         system_editor = "kwrite";
     if ( QFile("/usr/bin/xedit").exists())
@@ -381,31 +345,63 @@ QString PixMapName="";
     }
     ui->tab->insertTab(3,TOOL_stab,"Tools");
 
-
     if ( network_connected=="OKAY")
     {
-        ui->CheckUpdate_pushButton->setVisible(false);
-        if (( gitVersion != Version ) || ( gitToolsVersion != ToolsVersion ))
+        const char *cmd;
+        /*Retrieve SDK_Version*/
+        QString Qcmd = "rm -rf /tmp/SDK_Version; cd /tmp; git clone https://github.com/NovasomIndustries/SDK_Version.git ";
+        QString fileName = "/tmp/SDK_Version/CurrentVersion";
+        QFile file(fileName);
+        QByteArray ba = Qcmd.toLatin1();
+        cmd = ba.data();
+        system(cmd);
+
+        if ( file.size() > 4 )
         {
-            if ( gitVersion != Version )
+            QString strKeyConf("NOVAembed 2019.7 Remote Configuration/");
+            QSettings * config = 0;
+            config = new QSettings( fileName, QSettings::IniFormat );
+            gitVersion = config->value( strKeyConf + "Version", "r").toString();
+            gitToolsVersion = config->value( strKeyConf + "ToolsVersion", "r").toString();
+            repo_server = config->value( strKeyConf + "SystemRepoServer", "r").toString();
+            backup_repo_server = config->value( strKeyConf + "BackupSystemRepoServer", "r").toString();
+
+            std::cout << "Version : " << Version.toLatin1().constData() << "\n" << std::flush;
+            std::cout << "gitVersion : " << gitVersion.toLatin1().constData() << "\n" << std::flush;
+            std::cout << "Tools : " << ToolsVersion.toLatin1().constData() << "\n" << std::flush;
+            std::cout << "gitToolVersion : " << gitToolsVersion.toLatin1().constData() << "\n" << std::flush;
+            std::cout << repo_server.toLatin1().constData() << "\n" << std::flush;
+            std::cout << backup_repo_server.toLatin1().constData() << "\n" << std::flush;
+
+            ui->CheckUpdate_pushButton->setVisible(false);
+            if (( gitVersion != Version ) || ( gitToolsVersion != ToolsVersion ))
             {
-                update_status_bar("Found NOVAembed updates");
-                ui->CheckUpdate_pushButton->setVisible(true);
+                if ( gitVersion != Version )
+                {
+                    update_status_bar("Found NOVAembed updates");
+                    ui->CheckUpdate_pushButton->setVisible(true);
+                }
+                if ( gitToolsVersion != ToolsVersion )
+                {
+                    update_status_bar("Found Tools updates");
+                    ui->CheckUpdate_pushButton->setVisible(true);
+                }
+                if (( gitVersion != Version ) && ( gitToolsVersion != ToolsVersion ))
+                {
+                    update_status_bar("Found NOVAembed and Tools updates");
+                    ui->CheckUpdate_pushButton->setVisible(true);
+                }
             }
-            if ( gitToolsVersion != ToolsVersion )
+            else
             {
-                update_status_bar("Found Tools updates");
-                ui->CheckUpdate_pushButton->setVisible(true);
+                update_status_bar("No updates found");
+                ui->CheckUpdate_pushButton->setVisible(false);
             }
-            if (( gitVersion != Version ) && ( gitToolsVersion != ToolsVersion ))
-            {
-                update_status_bar("Found NOVAembed and Tools updates");
-                ui->CheckUpdate_pushButton->setVisible(true);
-            }
+
         }
         else
         {
-            update_status_bar("No updates found");
+            update_status_bar("No informations available for update");
             ui->CheckUpdate_pushButton->setVisible(false);
         }
     }
@@ -855,15 +851,15 @@ QString line;
         ui->uSD_Device_comboBox->setCurrentText(uSD_Device);
         if ( ui->Board_comboBox->currentText() == "P Series")
         {
-            if ( !QFile(instpath+"/Bootloader/u-boot-novasomP-2015.04/"+NXP_P_SPL).exists() )
+            if ( !QFile(instpath+"/Bootloader/"+NXP_P_BOOTLOADER+"/SPL").exists() )
                 BootValid = "INVALID";
-            if ( !QFile(instpath+"/Bootloader/u-boot-novasomP-2015.04/"+NXP_P_UBOOT).exists() )
+            if ( !QFile(instpath+"/Bootloader/"+NXP_P_BOOTLOADER+"/uboot.img").exists() )
                 BootValid = "INVALID";
         }
 
         if ( ui->Board_comboBox->currentText() == "U5")
         {
-            if ( !QFile(instpath+"//Bootloader/u-boot-novasomU-2016.03/"+NXP_U_UBOOT).exists() )
+            if ( !QFile(instpath+"//Bootloader/"+NXP_U_BOOTLOADER+"/uboot.imx").exists() )
                 BootValid = "INVALID";
         }
         if ( ui->Board_comboBox->currentText() == "M8")
@@ -876,7 +872,7 @@ QString line;
             QString thepath;
             QFileInfo check_file1;
 
-            thepath=instpath+"/Bootloader/"+RK_M7_BOOTPATH+"/uboot.img";
+            thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/uboot.img";
             check_file1 = QFileInfo(thepath);
             if (check_file1.exists() && check_file1.isFile())
                 bootok++;
@@ -885,7 +881,7 @@ QString line;
                 BootValid = "INVALID";
                 std::cout << "novaembed.cpp : M7 uboot not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
             }
-            thepath=instpath+"/Bootloader/"+RK_M7_BOOTPATH+"/trust.img";
+            thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/trust.img";
             if (check_file1.exists() && check_file1.isFile())
                 bootok++;
             else
@@ -893,7 +889,7 @@ QString line;
                 BootValid = "INVALID";
                 std::cout << "novaembed.cpp : M7 trust not found : "<< thepath.toLatin1().constData() <<"\n" << std::flush;
             }
-            thepath=instpath+"/Bootloader/"+RK_M7_BOOTPATH+"/idbloader.img";
+            thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/idbloader.img";
             if (check_file1.exists() && check_file1.isFile())
                 bootok++;
             else
