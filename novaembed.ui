@@ -85,7 +85,7 @@
        <rect>
         <x>1030</x>
         <y>470</y>
-        <width>121</width>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -184,7 +184,7 @@
         <rect>
          <x>60</x>
          <y>20</y>
-         <width>181</width>
+         <width>201</width>
          <height>20</height>
         </rect>
        </property>
@@ -404,7 +404,7 @@
        <rect>
         <x>1030</x>
         <y>500</y>
-        <width>121</width>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -3019,7 +3019,7 @@
         </font>
        </property>
        <property name="text">
-        <string>AUDIO                            </string>
+        <string>AUDIO                    </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -3242,7 +3242,7 @@
         </font>
        </property>
        <property name="text">
-        <string>VIDEO                                                                                    </string>
+        <string>VIDEO                                                   </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -3881,7 +3881,7 @@
         </font>
        </property>
        <property name="text">
-        <string>SPI                            </string>
+        <string>SPI                      </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -3906,7 +3906,7 @@
         </font>
        </property>
        <property name="text">
-        <string>UART                 </string>
+        <string>UART              _</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -3932,7 +3932,7 @@
         </font>
        </property>
        <property name="text">
-        <string>CAN                     </string>
+        <string>CAN               </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -3957,7 +3957,7 @@
         </font>
        </property>
        <property name="text">
-        <string>I2C                                      </string>
+        <string>I2C______________</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -50692,7 +50692,7 @@ a PCAP/RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>SPI                          </string>
+        <string>SPI                        </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -50717,7 +50717,7 @@ a PCAP/RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>UART                                                            </string>
+        <string>UART                                                      </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -50743,7 +50743,7 @@ a PCAP/RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>CAN                     </string>
+        <string>CAN                   </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -51059,7 +51059,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>AUDIO                                  </string>
+        <string>AUDIO                               </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -51178,7 +51178,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>VIDEO                                                             </string>
+        <string>VIDEO                                                      </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -70356,7 +70356,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>SPI                                      </string>
+        <string>SPI                       </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -70381,7 +70381,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>UART                                                                                                              </string>
+        <string>UART                                                                    </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -70406,7 +70406,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>I2C                                      </string>
+        <string>I2C                            </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -88818,9 +88818,9 @@ a PCAP or an external RT touch</string>
       <widget class="QLabel" name="label_126">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>0</x>
          <y>20</y>
-         <width>321</width>
+         <width>261</width>
          <height>20</height>
         </rect>
        </property>
@@ -88834,7 +88834,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>VIDEO                                                             </string>
+        <string>VIDEO                                          </string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -107445,7 +107445,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>I2C                           _______</string>
+        <string>I2C                     _______</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -107670,7 +107670,7 @@ a PCAP or an external RT touch</string>
      <x>0</x>
      <y>0</y>
      <width>1268</width>
-     <height>29</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
