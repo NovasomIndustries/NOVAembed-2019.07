@@ -74,6 +74,19 @@ void NOVAembed::initrd_helper(void)
     ui->initRdSize_lineEdit->setText( QString::number(initrd_size) );
 }
 
+/* Write uSD frame enables */
+void NOVAembed::uSD_Write_frame_enable()
+{
+    if (( KernelValid == "OK" ) && ( BootValid == "OK" ) && (FSValid == "OK"))
+        ui->uSD_Write_frame->setEnabled(true);
+    else
+        ui->uSD_Write_frame->setEnabled(false);
+    if ( ui->UserBSPFselectedlineEdit->text() == "Not Initialized")
+        ui->Write_uSD_pushButton->setEnabled(false);
+    else
+        ui->Write_uSD_pushButton->setEnabled(true);
+}
+
 /* Bootloader */
 void NOVAembed::on_BootLoaderCompile_pushButton_clicked()
 {
@@ -82,25 +95,25 @@ void NOVAembed::on_BootLoaderCompile_pushButton_clicked()
     {
         QString a=NXP_P_BOOTLOADER;
         update_status_bar("Cloning "+a+" boot loader for "+ui->Board_comboBox->currentText()+" ... ");
-        system(instpath.toLatin1()+"/Utils/clone_singleboot "+NXP_P_BOOTLOADER+"_2019.01 "+NXP_P_BOOTLOADER);
+        system(instpath.toLatin1()+"/Utils/clone_singleboot "+NXP_P_BOOTLOADER+"_"+NOVAEMBED_VERSION+" "+NXP_P_BOOTLOADER);
     }
     if ( ui->Board_comboBox->currentText() == "U5")
     {
         QString a=NXP_U_BOOTLOADER;
         update_status_bar("Cloning "+a+" boot loader for "+ui->Board_comboBox->currentText()+" ... ");
-        system(instpath.toLatin1()+"/Utils/clone_singleboot "+NXP_U_BOOTLOADER+"_2019.01 "+NXP_U_BOOTLOADER);
+        system(instpath.toLatin1()+"/Utils/clone_singleboot "+NXP_U_BOOTLOADER+"_"+NOVAEMBED_VERSION+" "+NXP_U_BOOTLOADER);
     }
     if ( ui->Board_comboBox->currentText() == "M8")
     {
         QString a=QUALCOMM_BOOTLOADER;
         update_status_bar("Cloning "+a+" boot loader for "+ui->Board_comboBox->currentText()+" ... ");
-        system(instpath.toLatin1()+"/Utils/clone_singleboot "+QUALCOMM_BOOTLOADER+"_2019.01 "+QUALCOMM_BOOTLOADER);
+        system(instpath.toLatin1()+"/Utils/clone_singleboot "+QUALCOMM_BOOTLOADER+"_"+NOVAEMBED_VERSION+" "+QUALCOMM_BOOTLOADER);
     }
     if ( ui->Board_comboBox->currentText() == "M7")
     {
         QString a=RK_M7_BOOTLOADER;
         update_status_bar("Cloning "+a+" boot loader for "+ui->Board_comboBox->currentText()+" ... ");
-        system(instpath.toLatin1()+"/Utils/clone_singleboot "+RK_M7_BOOTLOADER+"_2019.01 "+RK_M7_BOOTLOADER);
+        system(instpath.toLatin1()+"/Utils/clone_singleboot "+RK_M7_BOOTLOADER+"_"+NOVAEMBED_VERSION+" "+RK_M7_BOOTLOADER);
     }
 
     QFile scriptfile("/tmp/script");
@@ -148,10 +161,7 @@ void NOVAembed::on_BootLoaderCompile_pushButton_clicked()
         BootValid = "INVALID";
         ui->BootStatus_label->setPixmap(QPixmap(":/Icons/invalid.png"));
     }
-    if (( KernelValid == "OK" ) && ( BootValid == "OK" ) && (FSValid == "OK"))
-        ui->uSD_Write_frame->setEnabled(true);
-    else
-        ui->uSD_Write_frame->setEnabled(false);
+    uSD_Write_frame_enable();
     storeNOVAembed_ini();
 }
 
@@ -225,10 +235,8 @@ void NOVAembed::on_KernelXconfig_pushButton_clicked()
         KernelValid = "INVALID";
         ui->KernelStatus_label->setPixmap(QPixmap(":/Icons/invalid.png"));
     }
-    if (( KernelValid == "OK" ) && ( BootValid == "OK" ) && (FSValid == "OK"))
-        ui->uSD_Write_frame->setEnabled(true);
-    else
-        ui->uSD_Write_frame->setEnabled(false);
+    uSD_Write_frame_enable();
+
     storeNOVAembed_ini();
 }
 
@@ -315,10 +323,8 @@ void NOVAembed::on_KernelCompile_pushButton_clicked()
         KernelValid = "INVALID";
         ui->KernelStatus_label->setPixmap(QPixmap(":/Icons/invalid.png"));
     }
-    if (( KernelValid == "OK" ) && ( BootValid == "OK" ) && (FSValid == "OK"))
-        ui->uSD_Write_frame->setEnabled(true);
-    else
-        ui->uSD_Write_frame->setEnabled(false);
+    uSD_Write_frame_enable();
+
     storeNOVAembed_ini();
 }
 
@@ -395,10 +401,8 @@ void NOVAembed::on_KernelReCompile_pushButton_clicked()
         ui->KernelStatus_label->setPixmap(QPixmap(":/Icons/invalid.png"));
         KernelValid = "INVALID";
     }
-    if (( KernelValid == "OK" ) && ( BootValid == "OK" ) && (FSValid == "OK"))
-        ui->uSD_Write_frame->setEnabled(true);
-    else
-        ui->uSD_Write_frame->setEnabled(false);
+    uSD_Write_frame_enable();
+
     storeNOVAembed_ini();
 }
 
@@ -622,10 +626,8 @@ void NOVAembed::on_FileSystemDeploy_pushButton_clicked()
         if ( ui->Board_comboBox->currentText() == "M7")
             Last_M7_FileSystem = "";
     }
-    if (( KernelValid == "OK" ) && ( BootValid == "OK" ) && (FSValid == "OK"))
-        ui->uSD_Write_frame->setEnabled(true);
-    else
-        ui->uSD_Write_frame->setEnabled(false);
+    uSD_Write_frame_enable();
+
     storeNOVAembed_ini();
 }
 

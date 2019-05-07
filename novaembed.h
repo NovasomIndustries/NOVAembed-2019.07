@@ -16,7 +16,7 @@
 #include <QDirIterator>
 
 #define INSTALLATION_PATH   "/Devel/NOVAsdk"
-
+#define NOVAEMBED_VERSION   "2019.07"
 #define RK_M7_KERNEL        "linux-4.4.167_M7"
 #define QUALCOMM_KERNEL     "linux-4.11.0-QualcommLinaro"
 #define NXP_P_KERNEL        "linux-imx_4.1.15_1.2.0_ga"
@@ -79,6 +79,7 @@ private slots:
     void initrd_helper(void);
     void Board_comboBox_setText(const QString &arg1);
     int CheckIfKernelsPresent();
+    void uSD_Write_frame_enable();
 
     /* Helper Functions End */
 
