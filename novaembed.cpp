@@ -860,7 +860,7 @@ QString line;
 
         if ( ui->Board_comboBox->currentText() == "U5")
         {
-            if ( !QFile(instpath+"//Bootloader/"+NXP_U_BOOTLOADER+"/uboot.imx").exists() )
+            if ( !QFile(instpath+"/Bootloader/"+NXP_U_BOOTLOADER+"/u-boot.imx").exists() )
                 BootValid = "INVALID";
         }
         if ( ui->Board_comboBox->currentText() == "M8")
