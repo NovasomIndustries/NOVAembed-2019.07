@@ -649,9 +649,9 @@ int NOVAembed::CheckIfKernelsPresent()
 /*****************************************************************************************************************************************************************************************/
 /*                                                                           Top tab switches                                                                                            */
 /*****************************************************************************************************************************************************************************************/
-int check_file_present(QString filesystemname_file)
+int check_file_present(QString filename)
 {
-    QFileInfo check_file(filesystemname_file);
+    QFileInfo check_file(filename);
     if (check_file.exists() && check_file.isFile())
         return 0;
     return -1;
@@ -850,55 +850,61 @@ QString line;
             ui->UserPartition2Size_lineEdit->setVisible(true);
         }
         ui->uSD_Device_comboBox->setCurrentText(uSD_Device);
-        if ( ui->Board_comboBox->currentText() == "P Series")
-        {
-            if ( !QFile(instpath+"/Bootloader/"+NXP_P_BOOTLOADER+"/SPL").exists() )
-                BootValid = "INVALID";
-            if ( !QFile(instpath+"/Bootloader/"+NXP_P_BOOTLOADER+"/uboot.img").exists() )
-                BootValid = "INVALID";
-        }
 
-        if ( ui->Board_comboBox->currentText() == "U5")
-        {
-            if ( !QFile(instpath+"/Bootloader/"+NXP_U_BOOTLOADER+"/u-boot.imx").exists() )
-                BootValid = "INVALID";
-        }
+        /* Boot finding */
+        BootValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "M8")
             BootValid = "OK";
+        if ( ui->Board_comboBox->currentText() == "U5")
+        {
+            QString thepath;
+            thepath = instpath+"/Bootloader/"+NXP_U_BOOTLOADER+"/u-boot.imx";
+            if ( check_file_present(thepath) == 0 )
+                BootValid = "OK";
+            else
+                std::cout << "novaembed.cpp : U5 uboot not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
+        }
+        if ( ui->Board_comboBox->currentText() == "P Series")
+        {
+            QString thepath;
+            thepath = instpath+"/Bootloader/"+NXP_P_BOOTLOADER+"/u-boot.img";
+            if ( check_file_present(thepath) == 0 )
+            {
+                thepath = instpath+"/Bootloader/"+NXP_P_BOOTLOADER+"/SPL";
+                if ( check_file_present(thepath) == 0 )
+                    BootValid = "OK";
+                else
+                    std::cout << "novaembed.cpp : P SPL not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
+            }
+            else
+            {
+                std::cout << "novaembed.cpp : P u-boot.img not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
+            }
+        }
 
         if ( ui->Board_comboBox->currentText() == "M7")
         {
-            BootValid = "OK";
-            int bootok=0;
             QString thepath;
-            QFileInfo check_file1;
 
             thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/uboot.img";
-            check_file1 = QFileInfo(thepath);
-            if (check_file1.exists() && check_file1.isFile())
-                bootok++;
-            else
+            if ( check_file_present(thepath) == 0 )
             {
-                BootValid = "INVALID";
-                std::cout << "novaembed.cpp : M7 uboot not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
+                thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/trust.img";
+                if ( check_file_present(thepath) == 0 )
+                {
+                    thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/idbloader.img";
+                    if ( check_file_present(thepath) == 0 )
+                        BootValid = "OK";
+                    else
+                        std::cout << "novaembed.cpp : M7 idbloader not found\n"<< thepath.toLatin1().constData() <<"\n" << std::flush;
+                }
+                else
+                    std::cout << "novaembed.cpp : M7 trust.img not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
             }
-            thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/trust.img";
-            if (check_file1.exists() && check_file1.isFile())
-                bootok++;
             else
-            {
-                BootValid = "INVALID";
-                std::cout << "novaembed.cpp : M7 trust not found : "<< thepath.toLatin1().constData() <<"\n" << std::flush;
-            }
-            thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/idbloader.img";
-            if (check_file1.exists() && check_file1.isFile())
-                bootok++;
-            else
-            {
-                BootValid = "INVALID";
-                std::cout << "novaembed.cpp : M7 idbloader not found\n"<< thepath.toLatin1().constData() <<"\n" << std::flush;
-            }
+                std::cout << "novaembed.cpp : M7 uboot.img not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
         }
+
 
         if ( BootValid == "OK" )
         {
@@ -911,6 +917,8 @@ QString line;
             std::cout << "BootNotValid\n" << std::flush;
         }
 
+        /* Kernel finding */
+        KernelValid = "OK";
         if ( ui->Board_comboBox->currentText() == "P Series")
             if ( !QFile(instpath+"/Kernel/"+NXP_P_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
@@ -921,22 +929,9 @@ QString line;
             if ( !QFile(instpath+"/Kernel/"+QUALCOMM_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
         if ( ui->Board_comboBox->currentText() == "M7")
-        {
-            KernelValid = "OK";
-            QString thepath;
-            QFileInfo check_file1;
-            thepath=instpath+"/Kernel/"+RK_M7_KERNEL+"/arch/arm64/boot/Image";
-            check_file1 = QFileInfo(thepath);
-            if (check_file1.exists() && check_file1.isFile())
-            {
-                std::cout << "novaembed.cpp : M7 kernel found : "<<thepath.toLatin1().constData() <<"\n" << std::flush;
-            }
-            else
-            {
+            if ( !QFile(instpath+"/Kernel/"+RK_M7_KERNEL_BIN).exists() )
                 KernelValid = "INVALID";
-                std::cout << "novaembed.cpp : M7 kernel not found : "<<thepath.toLatin1().constData() <<"\n" << std::flush;
-            }
-        }
+
         if ( KernelValid == "OK" )
         {
             ui->KernelStatus_label->setPixmap(QPixmap(":/Icons/valid.png"));
