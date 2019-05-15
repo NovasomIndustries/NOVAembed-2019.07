@@ -367,6 +367,16 @@ QString PixMapName="";
             repo_server = config->value( strKeyConf + "SystemRepoServer", "r").toString();
             backup_repo_server = config->value( strKeyConf + "BackupSystemRepoServer", "r").toString();
 
+            std::string utf8_text1 = gitVersion.toUtf8().constData();
+            std::size_t pos1 = utf8_text1.find("ac");
+
+            std::string utf8_text2 = gitToolsVersion.toUtf8().constData();
+            std::size_t pos2 = utf8_text2.find("ac");
+
+            if ( pos1 < 20 )
+                std::cout << "novaembed in rc\n" << std::flush;
+            if ( pos2 < 20 )
+                std::cout << "tools in rc\n" << std::flush;
             std::cout << "Version : " << Version.toLatin1().constData() << "\n" << std::flush;
             std::cout << "gitVersion : " << gitVersion.toLatin1().constData() << "\n" << std::flush;
             std::cout << "Tools : " << ToolsVersion.toLatin1().constData() << "\n" << std::flush;
@@ -1109,7 +1119,7 @@ void NOVAembed::on_CheckUpdate_pushButton_clicked()
     }
 
     scriptfile.close();
-    QMessageBox::StandardButton reply = QMessageBox::question(this, "NOVAembed will be Updated!" ,"NOVAembed will be updated. After the updates the application NOVAembed will shut down and must be manually restarted.\nIf you have unsaved work press \"No\" and save your work, but remember to restart NOVAembed.\n\nDo you want to shut down NOVAembed?", QMessageBox::Yes|QMessageBox::No);
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "NOVAembed will be Updated!" ,"NOVAembed will be updated. After the updates the application NOVAembed should be shutted down and must be manually restarted.\nIf you have unsaved work press \"No\" and save your work, but remember to restart NOVAembed.\n\nDo you want to update NOVAembed?", QMessageBox::Yes|QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
         update_status_bar("Updating NOVAembed");
@@ -1134,7 +1144,7 @@ void NOVAembed::on_ViewUpdatesLog_pushButton_clicked()
 void NOVAembed::on_actionVersion_triggered()
 {
     QString whole="NOVAembed V."+Version;
-    char msg1[]="Copyright 2017-2018 Novasomindustries.\nAll rights reserved.\n\nThe program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.\n";
+    char msg1[]="Copyright 2015-2019 Novasomindustries.\nAll rights reserved.\n\nThe program is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.\n";
 
     QByteArray ba = whole.toLatin1();
     const char *msg0 = ba.data();
