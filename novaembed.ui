@@ -50824,6 +50824,9 @@ a PCAP or an external RT touch</string>
        </property>
       </widget>
       <widget class="QCheckBox" name="U_UART5_checkBox">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -68843,7 +68846,7 @@ a PCAP or an external RT touch</string>
         <string>GND</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_UUART5_TXD">
+      <widget class="QLabel" name="label_UGPIO1_IO30">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -68863,10 +68866,10 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>UART5_TXD</string>
+        <string>GPIO01_IO30</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_UUART5_RXD">
+      <widget class="QLabel" name="label_UGPIO1_IO31">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -68886,7 +68889,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>UART5_RXD</string>
+        <string>GPIO01_IO31</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_UGPIO4_IO22">

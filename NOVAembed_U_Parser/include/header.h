@@ -588,6 +588,23 @@ imx6ul-ddr3-arm2 {\n\
     };\n\
 "
 
+#define uart5_defs "\
+&uart5 {\n\
+        pinctrl-names = \"default\";\n\
+        pinctrl-0 = <&pinctrl_uart5>;\n\
+        status = \"okay\";\n\
+};\n\
+"
+
+#define uart5_pins "\
+    pinctrl_uart5: uart5 {\n\
+        fsl,pins = <\n\
+        MX6UL_PAD_UART5_TX_DATA__GPIO1_IO30          0x1b0b1\n\
+        MX6UL_PAD_UART5_RX_DATA__GPIO1_IO31          0x1b0b1\n\
+        >;\n\
+    };\n\
+"
+
 #define ecspi4_defs "\
 &ecspi4 {\n\
         fsl,spi-num-chipselects = <1>;\n\

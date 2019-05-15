@@ -20,6 +20,8 @@ extern  QString system_editor;
 
 QString U_GPIO01_IO09_comboBox="GPIO01_IO09";
 QString U_GPIO01_IO10_comboBox="GPIO01_IO10";
+QString U_GPIO01_IO30_comboBox="GPIO01_IO30";
+QString U_GPIO01_IO31_comboBox="GPIO01_IO31";
 QString U_GPIO04_IO01_comboBox="GPIO04_IO01";
 QString U_GPIO04_IO02_comboBox="GPIO04_IO02";
 QString U_GPIO04_IO06_comboBox="GPIO04_IO06";
@@ -95,6 +97,8 @@ void NOVAembed::U_save_helper(QString fileName)
     out << QString("[U_IOMUX]\n");
     out << QString("U_GPIO01_IO09_comboBox="+U_GPIO01_IO09_comboBox+"\n");
     out << QString("U_GPIO01_IO10_comboBox="+U_GPIO01_IO10_comboBox+"\n");
+    out << QString("U_GPIO01_IO30_comboBox="+U_GPIO01_IO30_comboBox+"\n");
+    out << QString("U_GPIO01_IO31_comboBox="+U_GPIO01_IO31_comboBox+"\n");
     out << QString("U_GPIO04_IO01_comboBox="+U_GPIO04_IO01_comboBox+"\n");
     out << QString("U_GPIO04_IO02_comboBox="+U_GPIO04_IO02_comboBox+"\n");
     out << QString("U_GPIO04_IO06_comboBox="+U_GPIO04_IO06_comboBox+"\n");
@@ -130,6 +134,8 @@ void NOVAembed::U_save_helper(QString fileName)
     out << QString("\n[U_CONF]\n");
     out << QString("U_GPIO01_IO09_cbit="+ui->P_cbit_lineEdit->text()+"\n");
     out << QString("U_GPIO01_IO10_cbit="+ui->P_cbit_lineEdit->text()+"\n");
+    out << QString("U_GPIO01_IO30_cbit="+ui->P_cbit_lineEdit->text()+"\n");
+    out << QString("U_GPIO01_IO31_cbit="+ui->P_cbit_lineEdit->text()+"\n");
     out << QString("U_GPIO04_IO01_cbit="+ui->P_cbit_lineEdit->text()+"\n");
     out << QString("U_GPIO04_IO02_cbit="+ui->P_cbit_lineEdit->text()+"\n");
     out << QString("U_GPIO04_IO06_cbit="+ui->P_cbit_lineEdit->text()+"\n");
@@ -229,7 +235,7 @@ void NOVAembed::on_U_CAN1_checkBox_toggled(bool checked)
 {
     if ( checked )
     {
-        ui->label_UGPIO04_IO02->setText("CAN1_TX");
+        ui->label_UGPIO04_IO01->setText("CAN1_TX");
         ui->label_UGPIO04_IO02->setText("CAN1_RX");
         U_GPIO04_IO01_comboBox="CAN1_TX";
         U_GPIO04_IO02_comboBox="CAN1_RX";
@@ -239,7 +245,7 @@ void NOVAembed::on_U_CAN1_checkBox_toggled(bool checked)
     else
     {
         ui->U_CAN1_checkBox->setChecked(false);
-        ui->label_UGPIO04_IO02->setText("GPIO04_IO01");
+        ui->label_UGPIO04_IO01->setText("GPIO04_IO01");
         ui->label_UGPIO04_IO02->setText("GPIO04_IO02");
         U_GPIO04_IO01_comboBox="GPIO04_IO01";
         U_GPIO04_IO02_comboBox="GPIO04_IO02";
@@ -247,6 +253,28 @@ void NOVAembed::on_U_CAN1_checkBox_toggled(bool checked)
     }
 }
 
+
+
+void NOVAembed::on_U_UART5_checkBox_toggled(bool checked)
+{
+    if ( checked )
+    {
+        ui->label_UGPIO1_IO30->setText("UART5_TX");
+        ui->label_UGPIO1_IO31->setText("UART5_RX");
+        U_GPIO01_IO30_comboBox="UART5_TX";
+        U_GPIO01_IO31_comboBox="UART5_RX";
+        ui->U_UART5_checkBox->setChecked(true);
+    }
+    else
+    {
+        ui->U_UART6_checkBox->setChecked(false);
+        ui->label_UGPIO1_IO30->setText("GPIO01_IO30");
+        ui->label_UGPIO1_IO31->setText("GPIO01_IO31");
+        U_GPIO01_IO30_comboBox="GPIO01_IO30";
+        U_GPIO01_IO31_comboBox="GPIO01_IO31";
+        ui->U_UART5_checkBox->setChecked(false);
+    }
+}
 
 void NOVAembed::on_U_UART6_checkBox_toggled(bool checked)
 {

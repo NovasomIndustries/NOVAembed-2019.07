@@ -1145,3 +1145,4 @@ void NOVAembed::on_actionVersion_triggered()
     );
 }
 
+

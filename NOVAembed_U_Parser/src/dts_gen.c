@@ -108,6 +108,11 @@ char    t[1024];
         sprintf(t,spdif_pins);
         strcat(dtsfile_dump,t);
     }
+    if ( iomux->uart5 == 1 )
+    {
+        sprintf(t,uart5_pins);
+        strcat(dtsfile_dump,t);
+    }
     if ( iomux->uart6 == 1 )
     {
         sprintf(t,uart6_pins);
@@ -152,6 +157,12 @@ int     speed;
         strcat(dtsfile_dump,t);
     }
 
+    if ( iomux->uart5 == 1 )
+    {
+        sprintf(t,uart5_defs);
+        strcat(dtsfile_dump,t);
+    }
+
     if ( iomux->uart6 == 1 )
     {
         sprintf(t,uart6_defs);
@@ -185,13 +196,13 @@ void create_dts_file(void)
 FILE    *fpout_dts;
 
     sprintf(dtsfile_dump,dts_header);
-    printf("After sprintf %s\n",dtsfile_dump);
+    //printf("After sprintf %s\n",dtsfile_dump);
     process_special_devs_pins();
-    printf("After process_special_devs_pins\n");
+    //printf("After process_special_devs_pins\n");
     strcat(dtsfile_dump,dts_footer);
-    printf("After strcat %s\n",dtsfile_dump);
+    //printf("After strcat %s\n",dtsfile_dump);
     process_special_devs_defs();
-    printf("After process_special_devs_defs\n");
+    //printf("After process_special_devs_defs\n");
     printf("file_name_dts : %s\n",file_name_dts);
     if ( (fpout_dts = fopen(file_name_dts,"w" ) ))
     {

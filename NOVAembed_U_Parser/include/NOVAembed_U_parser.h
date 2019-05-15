@@ -15,6 +15,7 @@ typedef struct _iomux_cfg
     int can1;
     int ecspi4;
     int ecspi4_dev;
+    int uart5;
     int uart6;
     int i2c2;
     int uart5rtscts;

@@ -362,6 +362,8 @@ private slots:
 
     void on_M7_UART1_4WirescheckBox_toggled(bool checked);
 
+    void on_U_UART5_checkBox_toggled(bool checked);
+
 private:
     Ui::NOVAembed *ui;
 };
