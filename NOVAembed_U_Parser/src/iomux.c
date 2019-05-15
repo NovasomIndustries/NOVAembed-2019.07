@@ -20,7 +20,7 @@ void dump_iomux(void)
     printf("i2c2     : %d\n",iomux->i2c2);
     printf("**********************************************\n\n");
 }
-
+/*
 void copy_and_resize(char *dest,char *source)
 {
 char *dup = strdup(source);
@@ -92,13 +92,13 @@ void process_uart6(void)
     uart6 = calloc(1,sizeof(iomux_uart6));
     sprintf(uart6->grp_name,"uart4grp");
     sprintf(uart6->pinctrl0_name,"pinctrl_uart4");
-    sprintf(uart6->uart_txd_pin_name,"MX6QDL_PAD_CSI0_DAT12__UART4_TX_DATA");
-    sprintf(uart6->uart_rxd_pin_name,"MX6QDL_PAD_CSI0_DAT13__UART4_RX_DATA");
+    sprintf(uart6->uart_txd_pin_name,"MX6UL_PAD_CSI_MCLK__UART6_DCE_TX");
+    sprintf(uart6->uart_rxd_pin_name,"MX6UL_PAD_CSI_PIXCLK__UART6_DCE_RX");
     sprintf(uart6->pin_config[0],"1b0b1");
     sprintf(uart6->pin_config[1],"1b0b1");
     return;
 }
-
+*/
 void parse_iomux(void)
 {
     iomux = calloc(1,sizeof(iomux_cfg));
@@ -106,17 +106,17 @@ void parse_iomux(void)
     if ( strstr(file_contents,"U_GPIO01_IO09_comboBox=PWM2"))
     {
         iomux->pwm2 = 1;
-        process_pwm2();
+        //process_pwm2();
     }
     if ( strstr(file_contents,"U_GPIO04_IO06_comboBox=ECSPI4_SCLK"))
     {
         iomux->ecspi4 = 1;
-        process_ecspi4();
+        //p/rocess_ecspi4();
     }
 
     if ( strstr(file_contents,"U_GPIO01_IO10_comboBox=SPDIF_OUT"))
     {
-        process_spdif();
+        //process_spdif();
         iomux->spdif = 1;
     }
     if ( strstr(file_contents,"U_GPIO04_IO01_comboBox=CAN1_TX"))
@@ -126,12 +126,12 @@ void parse_iomux(void)
     }
     if ( strstr(file_contents,"U_GPIO04_IO19_comboBox=I2C2_SDA"))
     {
-        process_i2c2();
+        //process_i2c2();
         iomux->i2c2 = 1;
     }
     if ( strstr(file_contents,"U_GPIO04_IO17_comboBox=UART6_TX"))
     {
-        process_uart6();
+        //process_uart6();
         iomux->uart6 = 1;
     }
     if ( strstr(file_contents,"U_SPIdev4_checkBox=true"))

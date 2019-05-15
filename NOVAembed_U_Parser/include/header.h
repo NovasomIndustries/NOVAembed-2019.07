@@ -582,8 +582,8 @@ imx6ul-ddr3-arm2 {\n\
 #define uart6_pins "\
     pinctrl_uart6: uart6 {\n\
         fsl,pins = <\n\
-        MX6UL_PAD_CSI_PIXCLK__UART6_DTE_TX        0xb0\n\
-        MX6UL_PAD_CSI_MCLK__UART6_DTE_RX        0xb0\n\
+        MX6UL_PAD_CSI_MCLK__UART6_DCE_TX          0x1b0b1\n\
+        MX6UL_PAD_CSI_PIXCLK__UART6_DCE_RX        0x1b0b1\n\
         >;\n\
     };\n\
 "
