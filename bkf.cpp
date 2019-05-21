@@ -920,6 +920,7 @@ QString extfsname;
 QString extfsfilename;
 QString extfsversion;
 QString extfsboard;
+QString minimumsdsize;
 
 void NOVAembed::on_ExtFS_CheckAvailable_FS_pushButton_clicked()
 {
@@ -990,6 +991,8 @@ QString ShowName = "NotShown";
                 extfsname = content.split(" ").at(1);
                 extfsboard = content.split(" ").at(2);
                 extfsversion = content.split(" ").at(3);
+                minimumsdsize = content.split(" ").at(4);
+                ui->ExtFSuSDsize_lineEdit->setText(minimumsdsize);
                 ui->ExtFSName_lineEdit->setText(extfsname);
                 ui->ExtFSFileName_lineEdit->setText(extfsfilename);
                 ui->ExtFSVersion_lineEdit->setText(extfsversion);
