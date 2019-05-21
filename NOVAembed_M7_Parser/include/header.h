@@ -79,40 +79,36 @@
 \n\
 	vcc_host_vbus: host-vbus-regulator {\n\
 		compatible = \"regulator-fixed\";\n\
-		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;\n\
-		pinctrl-names = \"default\";\n\
-		pinctrl-0 = <&host_vbus_drv>;\n\
 		regulator-name = \"vcc_host_vbus\";\n\
 		regulator-min-microvolt = <5000000>;\n\
 		regulator-max-microvolt = <5000000>;\n\
-		enable-active-high;\n\
+        regulator-always-on;\n\
+        regulator-boot-on;\n\
 	};\n\
 \n\
-        vcc_otg_vbus: otg-vbus-regulator {\n\
-            compatible = \"regulator-fixed\";\n\
-            gpio = <&gpio0 RK_PD3 GPIO_ACTIVE_HIGH>;\n\
-            pinctrl-names = \"default\";\n\
-            pinctrl-0 = <&otg_vbus_drv>;\n\
-            regulator-name = \"vcc_otg_vbus\";\n\
-            regulator-min-microvolt = <5000000>;\n\
-            regulator-max-microvolt = <5000000>;\n\
-            enable-active-high;\n\
-        };\n\
-        vcc_phy: vcc-phy-regulator {\n\
-            compatible = \"regulator-fixed\";\n\
-            regulator-name = \"vcc_phy\";\n\
-            regulator-always-on;\n\
-            regulator-boot-on;\n\
-        };\n\
-        vcc_sd: sdmmc-regulator {\n\
-            compatible = \"regulator-fixed\";\n\
-            pinctrl-names = \"default\";\n\
-            pinctrl-0 = <&sdmmc0m1_gpio>;\n\
-            regulator-name = \"vcc_sd\";\n\
-            regulator-min-microvolt = <3300000>;\n\
-            regulator-max-microvolt = <3300000>;\n\
-            vin-supply = <&vcc_io>;\n\
-        };\n\
+    vcc_otg_vbus: otg-vbus-regulator {\n\
+        compatible = \"regulator-fixed\";\n\
+        regulator-name = \"vcc_otg_vbus\";\n\
+		regulator-min-microvolt = <5000000>;\n\
+		regulator-max-microvolt = <5000000>;\n\
+        regulator-always-on;\n\
+        regulator-boot-on;\n\
+    };\n\
+    vcc_phy: vcc-phy-regulator {\n\
+        compatible = \"regulator-fixed\";\n\
+        regulator-name = \"vcc_phy\";\n\
+        regulator-always-on;\n\
+        regulator-boot-on;\n\
+    };\n\
+    vcc_sd: sdmmc-regulator {\n\
+        compatible = \"regulator-fixed\";\n\
+        pinctrl-names = \"default\";\n\
+        pinctrl-0 = <&sdmmc0m1_gpio>;\n\
+        regulator-name = \"vcc_sd\";\n\
+        regulator-min-microvolt = <3300000>;\n\
+        regulator-max-microvolt = <3300000>;\n\
+        vin-supply = <&vcc_io>;\n\
+    };\n\
 \n\
         wireless-bluetooth {\n\
             compatible = \"bluetooth-platdata\";\n\
@@ -495,13 +491,16 @@
 \n\
 &u2phy {\n\
 	status = \"okay\";\n\
-	u2phy_host: host-port {\n\
-		status = \"okay\";\n\
-	};\n\
-	u2phy_otg: otg-port {\n\
-		vbus-supply = <&vcc_otg_vbus>;\n\
-		status = \"okay\";\n\
-	};\n\
+};\n\
+\n\
+&u2phy_host {\n\
+        phy-supply = <&vcc_host_vbus>;\n\
+	status = \"okay\";\n\
+};\n\
+\n\
+&u2phy_otg {\n\
+        phy-supply = <&vcc_otg_vbus>;\n\
+	status = \"okay\";\n\
 };\n\
 \n\
 &u3phy {\n\
@@ -518,6 +517,7 @@
 };\n\
 \n\
 &usb20_otg {\n\
+    dr_mode = \"host\";\n\
 	status = \"okay\";\n\
 };\n\
 \n\
@@ -599,3 +599,4 @@
 #define dts_footer "\n\
 };\n\
 "
+
