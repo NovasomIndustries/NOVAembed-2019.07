@@ -864,8 +864,16 @@ QString line;
 
         /* Boot finding */
         BootValid = "INVALID";
+
         if ( ui->Board_comboBox->currentText() == "M8")
-            BootValid = "OK";
+        {
+            QString thepath;
+            thepath = instpath+"/Bootloader/"+QUALCOMM_BOOTLOADER+"/u-boot.bin";
+            if ( check_file_present(thepath) == 0 )
+                BootValid = "OK";
+            else
+                std::cout << "novaembed.cpp : M8 uboot not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
+        }
         if ( ui->Board_comboBox->currentText() == "U5")
         {
             QString thepath;
