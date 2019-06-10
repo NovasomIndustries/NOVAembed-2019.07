@@ -1086,7 +1086,7 @@ void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
     scriptfile.close();
     if ( run_script() == 0)
     {
-        ui->ExtFS_comboBox->addItem(ui->ExtFS_Available_comboBox->currentText());
+        ui->ExtFS_comboBox->addItem(ui->ExtFSFileName_lineEdit->text());
         update_status_bar("File System "+ui->ExtFS_Available_comboBox->currentText()+" downloaded");
     }
     else
