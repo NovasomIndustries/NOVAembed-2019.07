@@ -1083,24 +1083,10 @@ void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
     out << QString("#!/bin/sh\n");
     out << QString("cd "+instpath+"/Utils\n");
     out << QString("./GetExternalFS "+currentboard+" "+repo_server+" "+backup_repo_server+" "+ui->ExtFSFileName_lineEdit->text()+"\n");
-    /*
-    out << QString("! [ -d "+instpath+"/ExternalFileSystems/"+currentboard+" ] && mkdir -p "+instpath+"/ExternalFileSystems/"+currentboard+"\n");
-    out << QString("cd "+instpath+"/ExternalFileSystems/"+currentboard+"\n");
-    out << QString("wget --tries=2 --timeout=10 http://"+repo_server+"/OS/"+currentboard+"/"+ui->ExtFSFileName_lineEdit->text()+"\n");
-    out << QString("if ! [ \"$?\" = \"0\" ]; then\n");
-    out << QString("    wget --tries=2 --timeout=10 http://"+backup_repo_server+"/OS/"+currentboard+"/"+ui->ExtFSFileName_lineEdit->text()+"\n");
-    out << QString("    if ! [ \"$?\" = \"0\" ]; then\n");
-    out << QString("        echo 1 > /tmp/result\n");
-    out << QString("        exit 1\n");
-    out << QString("    fi\n");
-    out << QString("fi\n");
-    out << QString("echo 0 > /tmp/result\n");
-    out << QString("exit 0\n");
-    */
-
     scriptfile.close();
     if ( run_script() == 0)
     {
+        ui->ExtFS_comboBox->addItem(ui->ExtFS_Available_comboBox->currentText());
         update_status_bar("File System "+ui->ExtFS_Available_comboBox->currentText()+" downloaded");
     }
     else
