@@ -43,6 +43,7 @@ extern int initrd_size;
 extern  QString instpath;
 
 extern QWidget *current_stab;
+extern  QString AlreadyCompiled;
 
 void NOVAembed::Board_comboBox_setText(const QString &arg1)
 {
@@ -54,6 +55,7 @@ void NOVAembed::on_Board_comboBox_currentIndexChanged(const QString &arg1)
     if ( _Board_comboBox == arg1 )
         return;
     _Board_comboBox = arg1;
+    AlreadyCompiled = "NO";
 
     Board_comboBox_setText(arg1);
 
@@ -107,11 +109,16 @@ void NOVAembed::on_Board_comboBox_currentIndexChanged(const QString &arg1)
         ui->UserBSPFSelect_pushButton->setVisible(true);
         ui->UserBSPFselectedlineEdit->setVisible(true);
     }
-    /* hide Tools for recompose order, remind : N1 has no BSPF tab */
+    /*
+    ui->tab->removeTab(4);
     ui->tab->removeTab(3);
+    */
     ui->tab->removeTab(2);
     ui->tab->insertTab(2,current_stab,CurrentBSPF_Tab);
-    ui->tab->insertTab(3,TOOL_stab,"Tools");
+    /*
+    ui->tab->insertTab(3,TOOL_stab,"External File Systems");
+    ui->tab->insertTab(4,TOOL_stab,"Tools");
+    */
 
     compile_NewFileSystemFileSystemConfigurationcomboBox();
     compile_ExtFS_comboBox();

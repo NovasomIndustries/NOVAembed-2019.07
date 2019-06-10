@@ -560,8 +560,8 @@
      <widget class="QFrame" name="frame_3">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>80</y>
+        <x>10</x>
+        <y>170</y>
         <width>371</width>
         <height>151</height>
        </rect>
@@ -717,8 +717,8 @@
      <widget class="QFrame" name="frame_4">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>170</y>
+        <x>390</x>
+        <y>80</y>
         <width>371</width>
         <height>391</height>
        </rect>
@@ -1680,10 +1680,10 @@
      <widget class="QFrame" name="uSD_Write_frame">
       <property name="geometry">
        <rect>
-        <x>390</x>
-        <y>240</y>
-        <width>371</width>
-        <height>321</height>
+        <x>770</x>
+        <y>80</y>
+        <width>471</width>
+        <height>391</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -1719,7 +1719,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>290</y>
+         <y>360</y>
          <width>171</width>
          <height>21</height>
         </rect>
@@ -1736,7 +1736,7 @@
       <widget class="QComboBox" name="UserPartition_comboBox">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>350</x>
          <y>30</y>
          <width>71</width>
          <height>21</height>
@@ -1761,7 +1761,7 @@
       <widget class="QLabel" name="label_60">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>100</x>
          <y>30</y>
          <width>141</width>
          <height>20</height>
@@ -1784,7 +1784,7 @@
       <widget class="QLineEdit" name="UserPartition1Size_lineEdit">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>350</x>
          <y>50</y>
          <width>71</width>
          <height>21</height>
@@ -1794,7 +1794,7 @@
       <widget class="QLineEdit" name="UserPartition2Size_lineEdit">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>350</x>
          <y>70</y>
          <width>71</width>
          <height>21</height>
@@ -1804,7 +1804,7 @@
       <widget class="QLabel" name="label_78">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>150</x>
          <y>50</y>
          <width>131</width>
          <height>20</height>
@@ -1820,7 +1820,7 @@
       <widget class="QLabel" name="label_79">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>150</x>
          <y>70</y>
          <width>131</width>
          <height>20</height>
@@ -1864,7 +1864,7 @@
       <widget class="QComboBox" name="uSD_Device_comboBox">
        <property name="geometry">
         <rect>
-         <x>280</x>
+         <x>350</x>
          <y>90</y>
          <width>71</width>
          <height>21</height>
@@ -1899,7 +1899,7 @@
       <widget class="QLabel" name="label_102">
        <property name="geometry">
         <rect>
-         <x>110</x>
+         <x>100</x>
          <y>90</y>
          <width>111</width>
          <height>20</height>
@@ -1943,7 +1943,7 @@
         <rect>
          <x>180</x>
          <y>160</y>
-         <width>181</width>
+         <width>271</width>
          <height>21</height>
         </rect>
        </property>
@@ -1979,7 +1979,7 @@
         <rect>
          <x>100</x>
          <y>240</y>
-         <width>261</width>
+         <width>351</width>
          <height>21</height>
         </rect>
        </property>
@@ -1988,7 +1988,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>260</y>
+         <y>270</y>
          <width>171</width>
          <height>21</height>
         </rect>
@@ -2024,7 +2024,7 @@
       <widget class="QLineEdit" name="initRdSize_lineEdit">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>230</x>
          <y>130</y>
          <width>71</width>
          <height>21</height>
@@ -2034,7 +2034,7 @@
       <widget class="QLabel" name="label_103">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>100</x>
          <y>110</y>
          <width>131</width>
          <height>20</height>
@@ -2057,8 +2057,8 @@
       <widget class="QPushButton" name="ViewuSDwriteLog_pushButton">
        <property name="geometry">
         <rect>
-         <x>240</x>
-         <y>290</y>
+         <x>330</x>
+         <y>360</y>
          <width>121</width>
          <height>21</height>
         </rect>
@@ -2070,7 +2070,7 @@
       <widget class="QLineEdit" name="CurrentFS_lineEdit">
        <property name="geometry">
         <rect>
-         <x>160</x>
+         <x>230</x>
          <y>110</y>
          <width>191</width>
          <height>21</height>
@@ -2080,7 +2080,7 @@
       <widget class="QLabel" name="label_104">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>100</x>
          <y>130</y>
          <width>91</width>
          <height>20</height>
@@ -2098,244 +2098,6 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="PreCompiledFileSystem_frame">
-      <property name="geometry">
-       <rect>
-        <x>770</x>
-        <y>290</y>
-        <width>471</width>
-        <height>271</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::Panel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QPushButton" name="ExtFS_CheckAvailable_FS_pushButton">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>451</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Check for available File Systems</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="ExtFS_Available_comboBox">
-       <property name="geometry">
-        <rect>
-         <x>100</x>
-         <y>60</y>
-         <width>361</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_127">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>91</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <italic>true</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string> File System</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="ExtFS_DownloadSelected_FS_pushButton">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>240</y>
-         <width>451</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Download </string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_19">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>150</y>
-         <width>61</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Version</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_10">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>120</y>
-         <width>61</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>File name</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_2">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>90</y>
-         <width>61</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Name</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_26">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>180</y>
-         <width>61</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Board</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="ExtFSName_lineEdit">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>90</y>
-         <width>391</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="ExtFSFileName_lineEdit">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>120</y>
-         <width>391</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="ExtFSVersion_lineEdit">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>150</y>
-         <width>391</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="ExtFSBoard_lineEdit">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>180</y>
-         <width>391</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_128">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>0</y>
-         <width>341</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Available File Systems</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_39">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>210</y>
-         <width>61</width>
-         <height>16</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>uSD Size</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="ExtFSuSDsize_lineEdit">
-       <property name="geometry">
-        <rect>
-         <x>70</x>
-         <y>210</y>
-         <width>391</width>
-         <height>21</height>
-        </rect>
        </property>
       </widget>
      </widget>
@@ -2404,243 +2166,6 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-     </widget>
-     <widget class="QFrame" name="frame_9">
-      <property name="geometry">
-       <rect>
-        <x>770</x>
-        <y>80</y>
-        <width>471</width>
-        <height>201</height>
-       </rect>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <widget class="QPushButton" name="ViewPreCompiledLog_pushButton">
-       <property name="geometry">
-        <rect>
-         <x>240</x>
-         <y>170</y>
-         <width>151</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>View Pre compiled log</string>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="ExtFS_Write_uSD_pushButton">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>170</y>
-         <width>121</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>9</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Write microSD</string>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="ExtFS_uSD_Device_comboBox">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>60</y>
-         <width>61</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <item>
-        <property name="text">
-         <string>sdb</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>sdc</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>sdd</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>sde</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>sdf</string>
-        </property>
-       </item>
-      </widget>
-      <widget class="QLabel" name="label_120">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>60</y>
-         <width>121</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <italic>true</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>microSD Device</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QComboBox" name="ExtFS_comboBox">
-       <property name="geometry">
-        <rect>
-         <x>150</x>
-         <y>30</y>
-         <width>311</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <item>
-        <property name="text">
-         <string>No External File System</string>
-        </property>
-       </item>
-      </widget>
-      <widget class="QLabel" name="label_118">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>91</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <weight>50</weight>
-         <italic>true</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>File System</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_117">
-       <property name="geometry">
-        <rect>
-         <x>20</x>
-         <y>0</y>
-         <width>361</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Pre compiled File Systems</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QPushButton" name="ExtFSBSPFSelect_pushButton">
-       <property name="geometry">
-        <rect>
-         <x>200</x>
-         <y>110</y>
-         <width>81</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="text">
-        <string>Browse</string>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_64">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>110</y>
-         <width>121</width>
-         <height>20</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>9</pointsize>
-         <weight>50</weight>
-         <italic>true</italic>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Select BSPF file</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="ExtFSBSPFselectedlineEdit">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>140</y>
-         <width>451</width>
-         <height>21</height>
-        </rect>
-       </property>
-      </widget>
-      <widget class="QLabel" name="label_65">
-       <property name="geometry">
-        <rect>
-         <x>0</x>
-         <y>90</y>
-         <width>411</width>
-         <height>21</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>9</pointsize>
-         <weight>75</weight>
-         <italic>true</italic>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Not selecting a bsp file results in writing the default one</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
@@ -107620,6 +107145,504 @@ a PCAP or an external RT touch</string>
       <property name="wordWrap">
        <bool>true</bool>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tabExternalFileSystems">
+     <attribute name="title">
+      <string>External File Systems</string>
+     </attribute>
+     <widget class="QFrame" name="PreCompiledFileSystem_frame">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>471</width>
+        <height>271</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="ExtFS_CheckAvailable_FS_pushButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>451</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Check for available File Systems</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="ExtFS_Available_comboBox">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>60</y>
+         <width>361</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_127">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string> File System</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ExtFS_DownloadSelected_FS_pushButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>240</y>
+         <width>451</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Download </string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_19">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Version</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>File name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>90</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Name</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_26">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>180</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Board</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="ExtFSName_lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>90</y>
+         <width>391</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="ExtFSFileName_lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>120</y>
+         <width>391</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="ExtFSVersion_lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>150</y>
+         <width>391</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="ExtFSBoard_lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>180</y>
+         <width>391</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_128">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>341</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Available File Systems</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_39">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>210</y>
+         <width>61</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>uSD Size</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="ExtFSuSDsize_lineEdit">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>210</y>
+         <width>391</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="frame_9">
+      <property name="geometry">
+       <rect>
+        <x>650</x>
+        <y>10</y>
+        <width>581</width>
+        <height>261</height>
+       </rect>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::Panel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <widget class="QPushButton" name="ViewPreCompiledLog_pushButton">
+       <property name="geometry">
+        <rect>
+         <x>420</x>
+         <y>190</y>
+         <width>151</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>View Pre compiled log</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ExtFS_Write_uSD_pushButton">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>190</y>
+         <width>121</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Write microSD</string>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="ExtFS_uSD_Device_comboBox">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>60</y>
+         <width>61</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>sdb</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>sdc</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>sdd</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>sde</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>sdf</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_120">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>60</y>
+         <width>121</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>microSD Device</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="ExtFS_comboBox">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>30</y>
+         <width>421</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <item>
+        <property name="text">
+         <string>No External File System</string>
+        </property>
+       </item>
+      </widget>
+      <widget class="QLabel" name="label_118">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>30</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>File System</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_117">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>0</y>
+         <width>361</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Pre compiled File Systems</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ExtFSBSPFSelect_pushButton">
+       <property name="geometry">
+        <rect>
+         <x>200</x>
+         <y>120</y>
+         <width>81</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Browse</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_64">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>120</y>
+         <width>121</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Select BSPF file</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="ExtFSBSPFselectedlineEdit">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>150</y>
+         <width>561</width>
+         <height>21</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_65">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>90</y>
+         <width>411</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Not selecting a bsp file results in writing the default one</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ExtFS_RemoveFS">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>230</y>
+         <width>561</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Manual remove selected file system</string>
+       </property>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="tabTools">

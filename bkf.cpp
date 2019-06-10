@@ -969,16 +969,12 @@ QString ShowName = "NotShown";
     {
         update_status_bar("External File System List retrieved from "+repo_server);
     }
-    if (file.open(QIODevice::ReadOnly))
-    {
-        QTextStream stream(&file);
-        while (!stream.atEnd())
-        {
-            content = stream.readLine();
-        }
-        file.close();
-    }
+
+    ui->ExtFS_comboBox->clear();
+    ui->ExtFS_Available_comboBox->clear();
+    ui->ExtFS_comboBox->setCurrentIndex(0);
     ui->ExtFS_Available_comboBox->setCurrentIndex(0);
+
     if (file.open(QIODevice::ReadOnly))
     {
         QTextStream stream(&file);
@@ -1005,17 +1001,40 @@ QString ShowName = "NotShown";
                     ExternalFileSystemsFile=instpath+"/ExternalFileSystems/U5/"+extfsfilename;
                 if ( ui->Board_comboBox->currentText() == "P Series")
                     ExternalFileSystemsFile=instpath+"/ExternalFileSystems/P/"+extfsfilename;
-                QFileInfo check_file(ExternalFileSystemsFile);
-                if ( ! check_file.exists() )
+
+                QFile scriptfile("/tmp/script");
+                QTextStream out(&scriptfile);
+                if ( ! scriptfile.open(QIODevice::WriteOnly | QIODevice::Text) )
+                {
+                    update_status_bar("Unable to create /tmp/script");
+                    return;
+                }
+                out << QString("#!/bin/sh\n");
+                out << QString("cd "+instpath+"/Utils\n");
+                QString currentboard;
+                currentboard = ui->Board_comboBox->currentText();
+                if ( currentboard == "P Series")
+                    currentboard="P";
+                out << QString("./CheckExternalFS "+currentboard+" "+repo_server+" "+backup_repo_server+" "+extfsfilename+"\n");
+                scriptfile.close();
+                if ( run_script() == 0)
+                {
+                    ui->ExtFS_comboBox->addItem(extfsfilename);
+                    update_status_bar("File System "+extfsfilename+" present");
+                }
+                else
                 {
                     if ( ShowName == "NotShown")
                         ShowName = extfsname;
                     ui->ExtFS_Available_comboBox->addItem(extfsname);
                     on_ExtFS_Available_comboBox_currentIndexChanged(extfsname);
+                    update_status_bar("File System "+extfsfilename+" to be downloaded");
                 }
             }
         }
         file.close();
+        ui->ExtFS_comboBox->setCurrentIndex(0);
+
         if ( ShowName != "NotShown")
             on_ExtFS_Available_comboBox_currentIndexChanged(ShowName);
     }
@@ -1062,6 +1081,9 @@ void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
     }
     QTextStream out(&scriptfile);
     out << QString("#!/bin/sh\n");
+    out << QString("cd "+instpath+"/Utils\n");
+    out << QString("./GetExternalFS "+currentboard+" "+repo_server+" "+backup_repo_server+" "+ui->ExtFSFileName_lineEdit->text()+"\n");
+    /*
     out << QString("! [ -d "+instpath+"/ExternalFileSystems/"+currentboard+" ] && mkdir -p "+instpath+"/ExternalFileSystems/"+currentboard+"\n");
     out << QString("cd "+instpath+"/ExternalFileSystems/"+currentboard+"\n");
     out << QString("wget --tries=2 --timeout=10 http://"+repo_server+"/OS/"+currentboard+"/"+ui->ExtFSFileName_lineEdit->text()+"\n");
@@ -1074,11 +1096,11 @@ void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
     out << QString("fi\n");
     out << QString("echo 0 > /tmp/result\n");
     out << QString("exit 0\n");
+    */
 
     scriptfile.close();
     if ( run_script() == 0)
     {
-        compile_ExtFS_comboBox();
         update_status_bar("File System "+ui->ExtFS_Available_comboBox->currentText()+" downloaded");
     }
     else
@@ -1148,6 +1170,34 @@ void NOVAembed::on_ExtFSBSPFSelect_pushButton_clicked()
         fileinfo.baseName();
         ui->ExtFSBSPFselectedlineEdit->setText(fileinfo.baseName());
     }
+}
+
+
+
+void NOVAembed::on_ExtFS_RemoveFS_clicked()
+{
+
+    QMessageBox::StandardButton reply;
+    update_status_bar("About to remove "+ui->ExtFS_comboBox->currentText()+" ...");
+    QString currentboard=ui->Board_comboBox->currentText();
+    if ( ui->Board_comboBox->currentText() == "P Series")
+        currentboard="P";
+
+    reply = QMessageBox::question(this, "Warning","A file system called\n"+ui->ExtFS_comboBox->currentText()+"\nalready exists.\n\nReally do you want to remove it?", QMessageBox::Yes|QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        QFile fsfile( instpath+"/ExternalFileSystems/"+currentboard+"/"+ui->ExtFS_comboBox->currentText() );
+        fsfile.remove();
+        update_status_bar(ui->ExtFS_comboBox->currentText()+" Removed");
+        int index = ui->ExtFS_comboBox->currentIndex();
+        ui->ExtFS_comboBox->removeItem(index);
+    }
+    else
+    {
+        update_status_bar(ui->ExtFS_comboBox->currentText()+" Not Removed");
+        return;
+    }
+
 }
 
 /* External file systems end */

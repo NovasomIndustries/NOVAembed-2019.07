@@ -264,7 +264,6 @@ QFileInfo fi;
     out << QString("else\n");
     out << QString("    echo 1 > /tmp/result\n");
     out << QString("fi\n");
-
     scriptfile.close();
     if ( run_script() == 0)
     {

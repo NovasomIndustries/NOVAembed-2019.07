@@ -364,6 +364,8 @@ private slots:
 
     void on_U_UART5_checkBox_toggled(bool checked);
 
+    void on_ExtFS_RemoveFS_clicked();
+
 private:
     Ui::NOVAembed *ui;
 };

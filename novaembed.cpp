@@ -67,11 +67,11 @@ QString backup_repo_server=BKP_SYSTEM_REPO_SERVER;
 
 QString network_connected="none";
 QString updates_found="none";
-
+QString AlreadyCompiled = "NO";
 int skip_filesave_on_Generate_pushButton_clicked = 0;
 
 extern  void storeNOVAembed_ini();
-QWidget *PBSP_stab,*UBSP_stab,*M8BSP_stab,*M7BSP_stab,*TOOL_stab,*TOOL_devel;
+QWidget *PBSP_stab,*UBSP_stab,*M8BSP_stab,*M7BSP_stab,*EXTFS_stab,*TOOL_stab,*TOOL_devel;
 
 /*****************************************************************************************************************************************************************************************/
 /*                                                                                    Code                                                                                               */
@@ -145,12 +145,22 @@ QString PixMapName="";
     if ( ! QDir(instpath+"/ExternalFileSystems").exists() )
     {
         QMessageBox::information(this, tr("ExternalFileSystems"),"ExternalFileSystems not found. Creating a new one!");
+        if ( ! QDir(instpath+"/ExternalFileSystems").exists() )
         system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/P");
         system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/U");
         system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/M8");
         system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/M7");
         copy_required_files = 1;
     }
+    if ( ! QDir(instpath+"/ExternalFileSystems/P").exists() )
+        system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/P");
+    if ( ! QDir(instpath+"/ExternalFileSystems/U").exists() )
+        system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/U");
+    if ( ! QDir(instpath+"/ExternalFileSystems/M8").exists() )
+        system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/M8");
+    if ( ! QDir(instpath+"/ExternalFileSystems/M7").exists() )
+        system("mkdir -p "+instpath.toLatin1()+"/ExternalFileSystems/M7");
+
     if ( ! QDir(instpath+"/DtbUserWorkArea").exists() )
     {
         QMessageBox::information(this, tr("DtbUserWorkArea"),"DtbUserWorkArea not found. Creating a new one!");
@@ -319,6 +329,8 @@ QString PixMapName="";
     M8BSP_stab=ui->tabBSPFM8;
     M7BSP_stab=ui->tabBSPFM7;
     TOOL_stab=ui->tabTools;
+    EXTFS_stab=ui->tabExternalFileSystems;
+    ui->tab->removeTab(6);
     ui->tab->removeTab(5);
     ui->tab->removeTab(4);
     ui->tab->removeTab(3);
@@ -345,7 +357,8 @@ QString PixMapName="";
         ui->tab->insertTab(2,PBSP_stab,"P BSP Factory");
         CurrentBSPF_Tab = "P BSP Factory";
     }
-    ui->tab->insertTab(3,TOOL_stab,"Tools");
+    ui->tab->insertTab(3,EXTFS_stab,"External File Systems");
+    ui->tab->insertTab(4,TOOL_stab,"Tools");
 
     if ( network_connected=="OKAY")
     {
@@ -682,7 +695,7 @@ QString line;
         ui->UserPartition_comboBox->setCurrentText(NumberOfUserPartitions);
 
         compile_NewFileSystemFileSystemConfigurationcomboBox();
-        compile_ExtFS_comboBox();
+        //compile_ExtFS_comboBox();
         on_ThisIsReferenceServer_checkBox_clicked(true);
         initrd_helper();
 
@@ -1085,6 +1098,15 @@ QString line;
             }
         }
         break;
+    case 3 : // External File System
+        update_status_bar("External File System");
+        if ( AlreadyCompiled == "NO")
+            on_ExtFS_CheckAvailable_FS_pushButton_clicked();
+        AlreadyCompiled = "YES";
+        break;
+    case 4 : // Tools
+        update_status_bar("Tools");
+        break;
 
     }
 }
@@ -1163,5 +1185,4 @@ void NOVAembed::on_actionVersion_triggered()
         tr(msg1)
     );
 }
-
 
