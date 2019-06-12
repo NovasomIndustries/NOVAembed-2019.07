@@ -921,6 +921,7 @@ QString extfsfilename;
 QString extfsversion;
 QString extfsboard;
 QString minimumsdsize;
+QString filesize;
 
 void NOVAembed::on_ExtFS_CheckAvailable_FS_pushButton_clicked()
 {
@@ -996,7 +997,14 @@ QString ShowName = "NotShown";
                 if ( ui->Board_comboBox->currentText() == "M8")
                     ExternalFileSystemsFile=instpath+"/ExternalFileSystems/M8/"+extfsfilename;
                 if ( ui->Board_comboBox->currentText() == "M7")
+                {
+                    filesize = content.split(" ").at(5);
+                    int num = filesize.toInt();
+                    num /= (1024*1024);
+                    QString size= filesize +" ("+QString::number(num)+" MB)";
+                    ui->ExtFSFileSize_lineEdit->setText(size);
                     ExternalFileSystemsFile=instpath+"/ExternalFileSystems/M7/"+extfsfilename;
+                }
                 if ( ui->Board_comboBox->currentText() == "U5")
                     ExternalFileSystemsFile=instpath+"/ExternalFileSystems/U5/"+extfsfilename;
                 if ( ui->Board_comboBox->currentText() == "P Series")
@@ -1058,10 +1066,24 @@ void NOVAembed::on_ExtFS_Available_comboBox_currentIndexChanged(const QString &a
                 extfsfilename = content.split(" ").at(0);
                 extfsboard = content.split(" ").at(2);
                 extfsversion = content.split(" ").at(3);
+                minimumsdsize = content.split(" ").at(4);
+
                 ui->ExtFSName_lineEdit->setText(extfsname);
                 ui->ExtFSFileName_lineEdit->setText(extfsfilename);
                 ui->ExtFSVersion_lineEdit->setText(extfsversion);
                 ui->ExtFSBoard_lineEdit->setText(extfsboard);
+                ui->ExtFSuSDsize_lineEdit->setText(minimumsdsize);
+
+                if ( ui->Board_comboBox->currentText() == "M7")
+                {
+                    filesize = content.split(" ").at(5);
+                    int num = filesize.toInt();
+                    num /= (1024*1024);
+                    QString size= filesize +" ("+QString::number(num)+" MB)";
+                    ui->ExtFSFileSize_lineEdit->setText(size);
+                }
+                else
+                    ui->ExtFSFileSize_lineEdit->setText("N/A");
             }
         }
         file.close();
