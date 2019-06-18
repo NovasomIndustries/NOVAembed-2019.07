@@ -80,6 +80,7 @@ private slots:
     void Board_comboBox_setText(const QString &arg1);
     int CheckIfKernelsPresent();
     void uSD_Write_frame_enable();
+    void ExtListHelper();
 
     /* Helper Functions End */
 

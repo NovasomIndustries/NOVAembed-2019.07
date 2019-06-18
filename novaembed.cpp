@@ -1100,9 +1100,11 @@ QString line;
         break;
     case 3 : // External File System
         update_status_bar("External File System");
+
         if ( AlreadyCompiled == "NO")
             on_ExtFS_CheckAvailable_FS_pushButton_clicked();
         AlreadyCompiled = "YES";
+        ExtListHelper();
         break;
     case 4 : // Tools
         update_status_bar("Tools");
@@ -1110,6 +1112,29 @@ QString line;
 
     }
 }
+
+void NOVAembed::ExtListHelper()
+{
+    QString full_board_path;
+
+    ui->ExtFS_comboBox->clear();
+
+    if ( ui->Board_comboBox->currentText() == "M7")
+        full_board_path = instpath+"/ExternalFileSystems/M7/";
+    if ( ui->Board_comboBox->currentText() == "M8")
+        full_board_path = instpath+"/ExternalFileSystems/M8/";
+    if ( ui->Board_comboBox->currentText() == "U")
+        full_board_path = instpath+"/ExternalFileSystems/U/";
+    if ( ui->Board_comboBox->currentText() == "P Class")
+        full_board_path = instpath+"/ExternalFileSystems/P/";
+
+    QDir path(full_board_path);
+    QStringList files = path.entryList(QDir::Files);
+    ui->ExtFS_comboBox->addItems(files);
+    ui->ExtFS_comboBox->setCurrentIndex(0);
+
+}
+
 
 /*****************************************************************************************************************************************************************************************/
 /*                                                                          Top tab switches END                                                                                         */

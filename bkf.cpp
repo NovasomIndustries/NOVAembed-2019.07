@@ -1041,7 +1041,7 @@ QString ShowName = "NotShown";
             }
         }
         file.close();
-        ui->ExtFS_comboBox->setCurrentIndex(0);
+        ExtListHelper();
 
         if ( ShowName != "NotShown")
             on_ExtFS_Available_comboBox_currentIndexChanged(ShowName);
