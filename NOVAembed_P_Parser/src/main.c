@@ -17,11 +17,27 @@ char        lvds_1280x800_ch1_parserinput[1024];
 char        lvds_1366x768_ch0_parserinput[1024];
 char        lvds_1366x768_ch1_parserinput[1024];
 
-void read_parserinput(void)
+void read_support_parserinput(char *fname, char *parserinput_array , int len)
 {
 FILE *fpin;
-char    parserinput_dir[]="/Devel/NOVAsom2019.1/Qt/NOVAembed/NOVAembed_P_Parser/lvds_defs/";
-char fname[256];
+    if ( (fpin = fopen(fname,"r" ) ))
+    {
+        fread(parserinput_array, len, 1, fpin);
+        fclose(fpin);
+    }
+    else
+    {
+        printf("Error on %s !!!\n",fname);
+        exit(-1);
+    }
+}
+
+void read_parserinput(void)
+{
+//FILE    *fpin;
+char    parserinput_dir[]="/Devel/NOVAsdk/Qt/NOVAembed/NOVAembed_P_Parser/lvds_defs/";
+char    fname[256];
+int     len;
 
     bzero(lvds_800x480_ch0_parserinput,sizeof(lvds_800x480_ch0_parserinput));
     bzero(lvds_800x480_ch1_parserinput,sizeof(lvds_800x480_ch1_parserinput));
@@ -37,81 +53,41 @@ char fname[256];
     bzero(lvds_1366x768_ch1_parserinput,sizeof(lvds_1366x768_ch1_parserinput));
 
     sprintf(fname,"%s/lvds_800x480_ch0_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_800x480_ch0_parserinput, sizeof(lvds_800x480_ch0_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_800x480_ch0_parserinput);
+    read_support_parserinput(fname,lvds_800x480_ch0_parserinput , len);
     sprintf(fname,"%s/lvds_800x480_ch1_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_800x480_ch1_parserinput, sizeof(lvds_800x480_ch1_parserinput), 1, fpin);
-        fclose(fpin);
-    }
-
+    len=sizeof(lvds_800x480_ch1_parserinput);
+    read_support_parserinput(fname,lvds_800x480_ch1_parserinput , len);
     sprintf(fname,"%s/lvds_800x600_ch0_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_800x600_ch0_parserinput, sizeof(lvds_800x600_ch0_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_800x600_ch0_parserinput);
+    read_support_parserinput(fname,lvds_800x600_ch0_parserinput , len);
     sprintf(fname,"%s/lvds_800x600_ch1_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_800x600_ch1_parserinput, sizeof(lvds_800x600_ch1_parserinput), 1, fpin);
-        fclose(fpin);
-    }
-
+    len=sizeof(lvds_800x600_ch1_parserinput);
+    read_support_parserinput(fname,lvds_800x600_ch1_parserinput , len);
     sprintf(fname,"%s/lvds_1024x600_ch0_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1024x600_ch0_parserinput, sizeof(lvds_1024x600_ch0_parserinput), 1, fpin);
-        fclose(fpin);
-    }
-
+    len=sizeof(lvds_1024x600_ch0_parserinput);
+    read_support_parserinput(fname,lvds_1024x600_ch0_parserinput , len);
     sprintf(fname,"%s/lvds_1024x600_ch1_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1024x600_ch1_parserinput, sizeof(lvds_1024x600_ch1_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_1024x600_ch1_parserinput);
+    read_support_parserinput(fname,lvds_1024x600_ch1_parserinput , len);
     sprintf(fname,"%s/lvds_1024x768_ch0_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1024x768_ch0_parserinput, sizeof(lvds_1024x768_ch0_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_1024x768_ch0_parserinput);
+    read_support_parserinput(fname,lvds_1024x768_ch0_parserinput , len);
     sprintf(fname,"%s/lvds_1024x768_ch1_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1024x768_ch1_parserinput, sizeof(lvds_1024x768_ch1_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_1024x768_ch1_parserinput);
+    read_support_parserinput(fname,lvds_1024x768_ch1_parserinput , len);
     sprintf(fname,"%s/lvds_1280x800_ch0_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1280x800_ch0_parserinput, sizeof(lvds_1280x800_ch0_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_1280x800_ch0_parserinput);
+    read_support_parserinput(fname,lvds_1280x800_ch0_parserinput , len);
     sprintf(fname,"%s/lvds_1280x800_ch1_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1280x800_ch1_parserinput, sizeof(lvds_1280x800_ch1_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_1280x800_ch1_parserinput);
+    read_support_parserinput(fname,lvds_1280x800_ch1_parserinput , len);
     sprintf(fname,"%s/lvds_1366x768_ch0_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1366x768_ch0_parserinput, sizeof(lvds_1366x768_ch0_parserinput), 1, fpin);
-        fclose(fpin);
-    }
+    len=sizeof(lvds_1366x768_ch0_parserinput);
+    read_support_parserinput(fname,lvds_1366x768_ch0_parserinput , len);
     sprintf(fname,"%s/lvds_1366x768_ch1_parserinput",parserinput_dir);
-    if ( (fpin = fopen(fname,"r" ) ))
-    {
-        fread(lvds_1366x768_ch1_parserinput, sizeof(lvds_1366x768_ch1_parserinput), 1, fpin);
-        fclose(fpin);
-    }
-
+    len=sizeof(lvds_1366x768_ch1_parserinput);
+    read_support_parserinput(fname,lvds_1366x768_ch1_parserinput , len);
 }
 
 int main(int argc, char *argv[])

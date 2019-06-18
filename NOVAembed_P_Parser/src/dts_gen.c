@@ -2,7 +2,7 @@
 #include "../include/header.h"
 
 char    dtsfile_dump[1024];
-char    dtsifile_dump[32768];
+char    dtsifile_dump[65536];
 char    file_name[32],file_name_noext[32],dir_name[256];
 char    file_name_dts[128],file_name_dtsi[128];
 char    hog[1024];
@@ -38,10 +38,10 @@ char    tstr[256];
     printf("Error\n");
 }
 
+char    sf[2048];
+char    t[512];
 void process_sf(void)
 {
-char    sf[1024];
-char    t[128];
     if ( pwm != NULL )
     {
         sprintf(sf,"        %s: %s{\n",pwm->pinctrl0_name,pwm->grp_name);
@@ -52,6 +52,7 @@ char    t[128];
         strcat (sf,"      };\n");
         strcat(dtsifile_dump,sf);
     }
+    printf("%s : epit1\n",__FUNCTION__);
     if ( epit1 != NULL )
     {
         sprintf(sf,"        %s: %s{\n",epit1->pinctrl0_name,epit1->grp_name);
@@ -62,6 +63,7 @@ char    t[128];
         strcat (sf,"      };\n");
         strcat(dtsifile_dump,sf);
     }
+    printf("%s : sdcard_8\n",__FUNCTION__);
     if ( sdcard_8 != NULL )
     {
         sprintf(sf,"        %s: %s{\n",sdcard_8->pinctrl0_name,sdcard_8->grp_name);
@@ -90,6 +92,7 @@ char    t[128];
         strcat (sf,"        };\n");
         strcat(dtsifile_dump,sf);
     }
+    printf("%s : sdcard_4\n",__FUNCTION__);
     if ( sdcard_4 != NULL )
     {
         sprintf(sf,"        %s: %s{\n",sdcard_4->pinctrl0_name,sdcard_4->grp_name);
@@ -110,6 +113,7 @@ char    t[128];
         strcat (sf,"        };\n");
         strcat(dtsifile_dump,sf);
     }
+    printf("%s : spdif\n",__FUNCTION__);
     if ( spdif != NULL )
     {
         sprintf(sf,"        %s: %s{\n",spdif->pinctrl0_name,spdif->grp_name);
@@ -419,6 +423,7 @@ char    t[128];
     sprintf (sf,"    };\n");
     strcat (sf," };\n");
     strcat(dtsifile_dump,sf);
+    printf("%s : finished\n",__FUNCTION__);
 }
 
 int extract_speed(char *speed_var_ptr)
@@ -709,9 +714,9 @@ int secjeida=0;
     }
 }
 
+char    ldb[16384];
 void process_lvds_channels(void)
 {
-char    ldb[4096];
 
     sprintf(ldb,dtsi_lvds_header_defs);
     if (strstr(file_contents,"PrimaryVideo_comboBox=LVDS 800x480"))
