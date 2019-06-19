@@ -282,7 +282,7 @@ void NOVAembed::on_ExtFS_Write_uSD_pushButton_clicked()
     update_status_bar("Writing image "+ui->ExtFS_comboBox->currentText()+" ...");
     if ( run_script() == 0)
     {
-        update_status_bar("File System "+ui->ExtFSFileName_lineEdit->text()+" written");
+        update_status_bar("File System "+ui->ExtFS_comboBox->currentText()+" written");
     }
     else
         update_status_bar("File System Creation error");
@@ -312,7 +312,6 @@ void NOVAembed::on_ExtFSBSPFSelect_pushButton_clicked()
 
 void NOVAembed::on_ExtFS_RemoveFS_clicked()
 {
-
     QMessageBox::StandardButton reply;
     update_status_bar("About to remove "+ui->ExtFS_comboBox->currentText()+" ...");
     QString currentboard=ui->Board_comboBox->currentText();
