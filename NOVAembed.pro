@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     welcome.cpp \
     U_bspf.cpp \
     m8_bspf.cpp \
-    m7_bspf.cpp
+    m7_bspf.cpp \
+    extfs.cpp
 
 HEADERS  += novaembed.h
 
