@@ -435,6 +435,10 @@ QString PixMapName="";
         update_status_bar("No network connection, unable to check for updates");
         ui->CheckUpdate_pushButton->setVisible(false);
     }
+    system ("if ! [ `file /dev/sdb | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdb; fi\n");
+    system ("if ! [ `file /dev/sdc | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdc; fi\n");
+    system ("if ! [ `file /dev/sdd | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdd; fi\n");
+    system ("if ! [ `file /dev/sde | awk '{print $2}' | grep block` ]; then sudo rm /dev/sde; fi\n");
 }
 
 NOVAembed::~NOVAembed()
