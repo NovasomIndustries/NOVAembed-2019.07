@@ -33,5 +33,6 @@
         <file>Icons/NXP-LayerScapeLogo.png</file>
         <file>Icons/RockchipLogo.jpg</file>
         <file>Icons/nindlogo.png</file>
+        <file>Icons/developer_image.png</file>
     </qresource>
 </RCC>

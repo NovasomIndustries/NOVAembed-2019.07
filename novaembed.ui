@@ -45,7 +45,7 @@
      <widget class="QLabel" name="label_114">
       <property name="geometry">
        <rect>
-        <x>1030</x>
+        <x>990</x>
         <y>530</y>
         <width>121</width>
         <height>16</height>
@@ -64,9 +64,9 @@
      <widget class="QLabel" name="VersionLabel">
       <property name="geometry">
        <rect>
-        <x>1160</x>
+        <x>1120</x>
         <y>530</y>
-        <width>81</width>
+        <width>61</width>
         <height>16</height>
        </rect>
       </property>
@@ -83,7 +83,7 @@
      <widget class="QPushButton" name="CheckUpdate_pushButton">
       <property name="geometry">
        <rect>
-        <x>1030</x>
+        <x>1000</x>
         <y>470</y>
         <width>141</width>
         <height>21</height>
@@ -296,7 +296,7 @@
          <rect>
           <x>60</x>
           <y>30</y>
-          <width>191</width>
+          <width>211</width>
           <height>20</height>
          </rect>
         </property>
@@ -402,7 +402,7 @@
      <widget class="QPushButton" name="ViewUpdatesLog_pushButton">
       <property name="geometry">
        <rect>
-        <x>1030</x>
+        <x>1000</x>
         <y>500</y>
         <width>141</width>
         <height>21</height>
@@ -501,7 +501,7 @@
      <widget class="QLabel" name="label_115">
       <property name="geometry">
        <rect>
-        <x>1030</x>
+        <x>990</x>
         <y>550</y>
         <width>121</width>
         <height>16</height>
@@ -520,9 +520,9 @@
      <widget class="QLabel" name="ToolsLabel">
       <property name="geometry">
        <rect>
-        <x>1160</x>
+        <x>1120</x>
         <y>550</y>
-        <width>81</width>
+        <width>61</width>
         <height>16</height>
        </rect>
       </property>
@@ -550,6 +550,69 @@
       </property>
       <property name="pixmap">
        <pixmap resource="novaembedresources.qrc">:/Icons/nindlogo.png</pixmap>
+      </property>
+     </widget>
+     <widget class="QLabel" name="rcVersionLabel">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>550</y>
+        <width>61</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <italic>true</italic>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="rcToolsLabel">
+      <property name="geometry">
+       <rect>
+        <x>1190</x>
+        <y>530</y>
+        <width>51</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <italic>true</italic>
+       </font>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="DeveloperIcon">
+      <property name="geometry">
+       <rect>
+        <x>1180</x>
+        <y>10</y>
+        <width>61</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+        <italic>true</italic>
+       </font>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="novaembedresources.qrc">:/Icons/developer_image.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
       </property>
      </widget>
     </widget>

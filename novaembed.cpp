@@ -416,10 +416,14 @@ QString PixMapName="";
             std::cout << backup_repo_server.toLatin1().constData() << "\n" << std::flush;
 
             ui->CheckUpdate_pushButton->setVisible(false);
-            CurrentDevelopment = "Devel";
             if ( CurrentDevelopment == "Devel" )
             {
                 std::cout << "on Devel branch\n" << std::flush;
+                ui->rcVersionLabel->setVisible(true);
+                ui->rcVersionLabel->setText(rcVersion);
+                ui->rcToolsLabel->setVisible(true);
+                ui->rcToolsLabel->setText(rcToolsVersion);
+                ui->DeveloperIcon->setVisible(true);
                 if (( gitrcVersion != rcVersion ) || ( gitVersion != Version ))
                 {
                     std::cout << "Found NOVAembed updates on DEVEL branch\n" << std::flush;
@@ -435,6 +439,9 @@ QString PixMapName="";
             }
             else
             {
+                ui->rcVersionLabel->setVisible(false);
+                ui->rcToolsLabel->setVisible(false);
+                ui->DeveloperIcon->setVisible(false);
                 if (( gitVersion != Version ) || ( gitToolsVersion != ToolsVersion ))
                 {
                     if ( gitVersion != Version )
