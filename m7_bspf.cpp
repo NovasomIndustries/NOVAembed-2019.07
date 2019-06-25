@@ -256,7 +256,7 @@ QFileInfo fi;
     out << QString(instpath+"/Qt/NOVAembed/NOVAembed_M7_Parser/bin/Debug/NOVAembed_M7_Parser "+instpath+"/DtbUserWorkArea/M7Class_bspf/"+Last_M7_BSPFactoryFile+".bspf > "+instpath+"/Logs/M7_bspf.log\n");
     if ( ui->M7_EditBeforeGenerate_checkBox->isChecked())
         out << QString(system_editor+" "+instpath+"/DtbUserWorkArea/"+Last_M7_BSPFactoryFile+".dts\n");
-    out << QString("./user_dtb_compile "+Last_M7_BSPFactoryFile+" M7 >> "+instpath+"/Logs/M7_bspf.log\n");
+    out << QString("./user_dtb_compile "+Last_M7_BSPFactoryFile+" M7 "+RK_M7_KERNEL+" >> "+instpath+"/Logs/M7_bspf.log\n");
     out << QString("if [ -f "+instpath+"/DtbUserWorkArea/"+Last_M7_BSPFactoryFile+".dtb ]; then\n");
     out << QString("    rm "+instpath+"/Deploy/m7_dtb.dtb\n");
     out << QString("    cp "+instpath+"/DtbUserWorkArea/"+Last_M7_BSPFactoryFile+".dtb "+instpath+"/Deploy/m7_dtb.dtb\n");

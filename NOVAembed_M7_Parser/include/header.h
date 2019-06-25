@@ -28,13 +28,6 @@
 		#clock-cells = <0>;\n\
 	};\n\
 \n\
-	sdio_pwrseq: sdio-pwrseq {\n\
-		compatible = \"mmc-pwrseq-simple\";\n\
-		pinctrl-names = \"default\";\n\
-		pinctrl-0 = <&wifi_enable_h>;\n\
-		reset-gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;\n\
-	};\n\
-\n\
 	sound {\n\
 		compatible = \"simple-audio-card\";\n\
 		simple-audio-card,format = \"i2s\";\n\
@@ -110,49 +103,62 @@
         vin-supply = <&vcc_io>;\n\
     };\n\
 \n\
-        wireless-bluetooth {\n\
-            compatible = \"bluetooth-platdata\";\n\
-            clocks = <&rk805 1>;\n\
-            clock-names = \"ext_clock\";\n\
-            uart_rts_gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;\n\
-            pinctrl-names = \"default\", \"rts_gpio\";\n\
-            pinctrl-0 = <&uart0_rts>;\n\
-            pinctrl-1 = <&uart0_gpios>;\n\
-            BT,power_gpio = <&gpio1 21 GPIO_ACTIVE_HIGH>;\n\
-            BT,wake_host_irq = <&gpio1 26 GPIO_ACTIVE_HIGH>;\n\
-            status = \"okay\";\n\
-        };\n\
-        wireless-wlan {\n\
-            compatible = \"wlan-platdata\";\n\
-            rockchip,grf = <&grf>;\n\
-            wifi_chip_type = \"rtl8723bs\";\n\
-            sdio_vref = <3300>;\n\
-            WIFI,host_poweren_gpio = <&gpio1 18 GPIO_ACTIVE_HIGH>;\n\
-            WIFI,host_wake_irq = <&gpio1 19 GPIO_ACTIVE_HIGH>;\n\
-            pinctrl-names = \"default\";\n\
-            pinctrl-0 = <&bt_clk>;\n\
-            status = \"okay\";\n\
-        };\n\
+    xin32k: xin32k {\n\
+            compatible = \"fixed-clock\";\n\
+            clock-frequency = <32768>;\n\
+            clock-output-names = \"xin32k\";\n\
+            #clock-cells = <0>;\n\
+    };\n\
 \n\
-        ir-receiver {\n\
-            compatible = \"gpio-ir-receiver\";\n\
-            gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;\n\
-            pinctrl-names = \"default\";\n\
-            pinctrl-0 = <&ir_rx>;\n\
-        };\n\
-        gpio-leds {\n\
-            compatible = \"gpio-leds\";\n\
-                rc-feedback  {\n\
-                    label = \"gpio-rc-feedback\";\n\
-                    gpios = <&gpio2 18 GPIO_ACTIVE_HIGH>;\n\
-                    linux,default-trigger = \"gpio-rc-feedback\";\n\
-                };\n\
-                heartbeat  {\n\
-                    label = \"heartbeat\";\n\
-                    gpios = <&gpio0 30 GPIO_ACTIVE_HIGH>;\n\
-                    linux,default-trigger = \"heartbeat\";\n\
-                };\n\
-        };\n\
+    wireless-bluetooth {\n\
+        compatible = \"bluetooth-platdata\";\n\
+        clocks = <&rk805 1>;\n\
+        clock-names = \"ext_clock\";\n\
+        uart_rts_gpios = <&gpio1 10 GPIO_ACTIVE_LOW>;\n\
+        pinctrl-names = \"default\", \"rts_gpio\";\n\
+        pinctrl-0 = <&uart0_rts>;\n\
+        pinctrl-1 = <&uart0_gpios>;\n\
+        BT,power_gpio = <&gpio1 21 GPIO_ACTIVE_HIGH>;\n\
+        BT,wake_host_irq = <&gpio1 26 GPIO_ACTIVE_HIGH>;\n\
+        status = \"okay\";\n\
+    };\n\
+    wireless-wlan {\n\
+        compatible = \"wlan-platdata\";\n\
+        rockchip,grf = <&grf>;\n\
+        wifi_chip_type = \"rtl8723bs\";\n\
+        sdio_vref = <3300>;\n\
+        WIFI,host_wake_irq = <&gpio1 19 GPIO_ACTIVE_HIGH>;\n\
+        pinctrl-names = \"default\";\n\
+        pinctrl-0 = <&bt_clk>;\n\
+        status = \"okay\";\n\
+    };\n\
+\n\
+	sdio_pwrseq: sdio-pwrseq {\n\
+		compatible = \"mmc-pwrseq-simple\";\n\
+		pinctrl-names = \"default\";\n\
+		pinctrl-0 = <&wifi_enable_h>;\n\
+		reset-gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;\n\
+	};\n\
+\n\
+    ir-receiver {\n\
+        compatible = \"gpio-ir-receiver\";\n\
+        gpios = <&gpio2 RK_PA2 GPIO_ACTIVE_LOW>;\n\
+        pinctrl-names = \"default\";\n\
+        pinctrl-0 = <&ir_rx>;\n\
+    };\n\
+    gpio-leds {\n\
+        compatible = \"gpio-leds\";\n\
+            rc-feedback  {\n\
+                label = \"gpio-rc-feedback\";\n\
+                gpios = <&gpio2 18 GPIO_ACTIVE_HIGH>;\n\
+                linux,default-trigger = \"gpio-rc-feedback\";\n\
+            };\n\
+            heartbeat  {\n\
+                label = \"heartbeat\";\n\
+                gpios = <&gpio0 30 GPIO_ACTIVE_HIGH>;\n\
+                linux,default-trigger = \"heartbeat\";\n\
+            };\n\
+    };\n\
 };\n\
 &pinctrl {\n\
 	ir {\n\
@@ -163,7 +169,7 @@
 \n\
 	pmic {\n\
 		pmic_int_l: pmic-int-l {\n\
-		rockchip,pins =<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;\n\
+            rockchip,pins =<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;\n\
 		};\n\
 	};\n\
 \n\
@@ -183,14 +189,23 @@
 		};\n\
 	};\n\
         wireless-bluetooth {\n\
-                uart0_gpios: uart0-gpios {\n\
-                rockchip,pins =<1 10 RK_FUNC_GPIO &pcfg_pull_none>;\n\
-                };\n\
+            uart0_gpios: uart0-gpios {\n\
+            rockchip,pins =<1 10 RK_FUNC_GPIO &pcfg_pull_none>;\n\
+            };\n\
         };\n\
-        clkout32k {\n\
-                bt_clk: bt-clk {\n\
-                rockchip,pins =<1 RK_PD4 RK_FUNC_1 &pcfg_pull_up>;\n\
-                };\n\
+        /* The following two pin defs are needed to have a 32KHz clock out for wlan.*/\n\
+        /* Seems silly to define the same pin twice and with different function, but I haven't find any other way to accomplish this.*/\n\
+        /* The order is also important, swapping the pins the clock is stucked at 1.*/\n\
+        /* Leaving the clock at 1 permits to the wifi module to run anyway, but seems to me an unstable situation. So this is it.*/\n\
+        wlan-clock {\n\
+            wireless_32k: wireless-32k {\n\
+            rockchip,pins =<1 RK_PD4 RK_FUNC_2 &pcfg_pull_up>;\n\
+            };\n\
+        };\n\
+        wlan-clock1 {\n\
+            bt_clk: bt-clk {\n\
+            rockchip,pins =<1 RK_PD4 RK_FUNC_1 &pcfg_pull_up>;\n\
+            };\n\
         };\n\
 };\n\
 \
@@ -211,32 +226,7 @@
 	status = \"okay\";\n\
 };\n\
 \n\
-&emmc {\n\
-	bus-width = <8>;\n\
-	cap-mmc-highspeed;\n\
-	mmc-hs200-1_8v;\n\
-	supports-emmc;\n\
-	disable-wp;\n\
-	non-removable;\n\
-	num-slots = <1>;\n\
-	pinctrl-names = \"default\";\n\
-	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;\n\
-	status = \"okay\";\n\
-};\n\
-\n\
 &gmac2io {\n\
-	phy-supply = <&vcc_phy>;\n\
-	phy-mode = \"rgmii\";\n\
-	clock_in_out = \"input\";\n\
-	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;\n\
-	snps,reset-active-low;\n\
-	snps,reset-delays-us = <0 10000 50000>;\n\
-	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;\n\
-	assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;\n\
-	pinctrl-names = \"default\";\n\
-	pinctrl-0 = <&rgmiim1_pins>;\n\
-	tx_delay = <0x26>;\n\
-	rx_delay = <0x11>;\n\
 	status = \"disabled\";\n\
 };\n\
 \n\
@@ -450,20 +440,33 @@
         status = \"okay\";\n\
 };\n\
 \n\
-&sdio {\n\
-	bus-width = <4>;\n\
-	cap-sd-highspeed;\n\
-	cap-sdio-irq;\n\
+&emmc {\n\
+	bus-width = <8>;\n\
+	cap-mmc-highspeed;\n\
+	mmc-hs200-1_8v;\n\
+	supports-emmc;\n\
 	disable-wp;\n\
-	keep-power-in-suspend;\n\
-	max-frequency = <150000000>;\n\
-	mmc-pwrseq = <&sdio_pwrseq>;\n\
 	non-removable;\n\
 	num-slots = <1>;\n\
 	pinctrl-names = \"default\";\n\
-	pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;\n\
-	supports-sdio;\n\
+	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;\n\
 	status = \"okay\";\n\
+};\n\
+&sdio {\n\
+        bus-width = <4>;\n\
+        cap-sd-highspeed;\n\
+        cap-sdio-irq;\n\
+        disable-wp;\n\
+        keep-power-in-suspend;\n\
+        max-frequency = <20000000>;\n\
+        mmc-pwrseq = <&sdio_pwrseq>;\n\
+        non-removable;\n\
+        num-slots = <1>;\n\
+        pinctrl-names = \"default\";\n\
+        pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;\n\
+        supports-sdio;\n\
+        sd-uhs-sdr104;\n\
+        status = \"okay\";\n\
 };\n\
 \n\
 &sdmmc {\n\
