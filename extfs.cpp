@@ -47,7 +47,10 @@ void NOVAembed::ExtListHelper()
     if ( ui->Board_comboBox->currentText() == "P Class")
         full_board_path = instpath+"/ExternalFileSystems/P/";
 
+    QStringList filters;
     QDir path(full_board_path);
+    filters << "*.bz2";
+    path.setNameFilters(filters);
     QStringList files = path.entryList(QDir::Files);
     ui->ExtFS_comboBox->addItems(files);
     ui->ExtFS_comboBox->setCurrentIndex(0);
