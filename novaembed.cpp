@@ -20,9 +20,13 @@
 /*****************************************************************************************************************************************************************************************/
 
 QString Version = "";
+QString rcVersion = "";
 QString ToolsVersion="";
-QString gitVersion = Version;
-QString gitToolsVersion=ToolsVersion;
+QString rcToolsVersion="";
+QString gitVersion = "";
+QString gitrcVersion = "";
+QString gitToolsVersion="";
+QString gitrcToolsVersion="";
 
 QString Configuration = "Standard";
 QString FileSystemName = "";
@@ -94,9 +98,11 @@ QString PixMapName="";
     QSettings * configNe = 0;
     configNe = new QSettings( instpath+"/Qt/NOVAembed/version", QSettings::IniFormat );
     Version = configNe->value( strKeyLocalVersion + "Version", "r").toString();
+    rcVersion = configNe->value( strKeyLocalVersion + "rcVersion", "r").toString();
     repo_server = configNe->value( strKeyLocalVersion + "SystemRepoServer", "r").toString();
     backup_repo_server = configNe->value( strKeyLocalVersion + "BackupSystemRepoServer", "r").toString();
     std::cout << "Version : " << Version.toLatin1().constData() << "\n" << std::flush;
+    std::cout << "rcVersion : " << Version.toLatin1().constData() << "\n" << std::flush;
     std::cout << "repo_server : " << repo_server.toLatin1().constData() << "\n" << std::flush;
     std::cout << "backup_repo_server : " << backup_repo_server.toLatin1().constData() << "\n" << std::flush;
     /* Get tools version*/
@@ -104,7 +110,9 @@ QString PixMapName="";
     QSettings * configTool = 0;
     configTool = new QSettings( instpath+"/Utils/tool_version", QSettings::IniFormat );
     ToolsVersion = configTool->value( strKeyConfTool + "Tools", "r").toString();
+    rcToolsVersion = configTool->value( strKeyConfTool + "rcTools", "r").toString();
     std::cout << "ToolsVersion : " << ToolsVersion.toLatin1().constData() << "\n" << std::flush;
+    std::cout << "rcToolsVersion : " << rcToolsVersion.toLatin1().constData() << "\n" << std::flush;
 
     /* Check for network presence */
     QFile nwpresent("/tmp/network_connected");
@@ -377,50 +385,79 @@ QString PixMapName="";
             QSettings * config = 0;
             config = new QSettings( fileName, QSettings::IniFormat );
             gitVersion = config->value( strKeyConf + "Version", "r").toString();
+            gitrcVersion = config->value( strKeyConf + "rcVersion", "r").toString();
             gitToolsVersion = config->value( strKeyConf + "ToolsVersion", "r").toString();
+            gitrcToolsVersion = config->value( strKeyConf + "rcToolsVersion", "r").toString();
             repo_server = config->value( strKeyConf + "SystemRepoServer", "r").toString();
             backup_repo_server = config->value( strKeyConf + "BackupSystemRepoServer", "r").toString();
 
             std::string utf8_text1 = gitVersion.toUtf8().constData();
-            std::size_t pos1 = utf8_text1.find("ac");
+            std::size_t pos1 = utf8_text1.find("rc");
 
             std::string utf8_text2 = gitToolsVersion.toUtf8().constData();
-            std::size_t pos2 = utf8_text2.find("ac");
+            std::size_t pos2 = utf8_text2.find("rc");
 
             if ( pos1 < 20 )
                 std::cout << "novaembed in rc\n" << std::flush;
             if ( pos2 < 20 )
                 std::cout << "tools in rc\n" << std::flush;
+            if ( CurrentDevelopment == "Devel")
+                std::cout << "You are in Devel mode\n" << std::flush;
+            else // Stable
+                std::cout << "You are in Stable mode\n" << std::flush;
+
             std::cout << "Version : " << Version.toLatin1().constData() << "\n" << std::flush;
             std::cout << "gitVersion : " << gitVersion.toLatin1().constData() << "\n" << std::flush;
+            std::cout << "gitrcVersion : " << gitrcVersion.toLatin1().constData() << "\n" << std::flush;
             std::cout << "Tools : " << ToolsVersion.toLatin1().constData() << "\n" << std::flush;
-            std::cout << "gitToolVersion : " << gitToolsVersion.toLatin1().constData() << "\n" << std::flush;
+            std::cout << "gitToolsVersion : " << gitToolsVersion.toLatin1().constData() << "\n" << std::flush;
+            std::cout << "gitrcToolsVersion : " << gitrcToolsVersion.toLatin1().constData() << "\n" << std::flush;
             std::cout << repo_server.toLatin1().constData() << "\n" << std::flush;
             std::cout << backup_repo_server.toLatin1().constData() << "\n" << std::flush;
 
             ui->CheckUpdate_pushButton->setVisible(false);
-            if (( gitVersion != Version ) || ( gitToolsVersion != ToolsVersion ))
+            CurrentDevelopment = "Devel";
+            if ( CurrentDevelopment == "Devel" )
             {
-                if ( gitVersion != Version )
+                std::cout << "on Devel branch\n" << std::flush;
+                if (( gitrcVersion != rcVersion ) || ( gitVersion != Version ))
                 {
-                    update_status_bar("Found NOVAembed updates");
+                    std::cout << "Found NOVAembed updates on DEVEL branch\n" << std::flush;
+                    update_status_bar("Found NOVAembed updates on DEVEL branch");
                     ui->CheckUpdate_pushButton->setVisible(true);
                 }
-                if ( gitToolsVersion != ToolsVersion )
+                if (( gitrcToolsVersion != rcToolsVersion ) || ( gitToolsVersion != ToolsVersion ))
                 {
-                    update_status_bar("Found Tools updates");
-                    ui->CheckUpdate_pushButton->setVisible(true);
-                }
-                if (( gitVersion != Version ) && ( gitToolsVersion != ToolsVersion ))
-                {
-                    update_status_bar("Found NOVAembed and Tools updates");
+                    std::cout << "Found Tools updates on DEVEL branch\n" << std::flush;
+                    update_status_bar("Found Tools updates on DEVEL branch");
                     ui->CheckUpdate_pushButton->setVisible(true);
                 }
             }
             else
             {
-                update_status_bar("No updates found");
-                ui->CheckUpdate_pushButton->setVisible(false);
+                if (( gitVersion != Version ) || ( gitToolsVersion != ToolsVersion ))
+                {
+                    if ( gitVersion != Version )
+                    {
+                        update_status_bar("Found NOVAembed updates");
+                        ui->CheckUpdate_pushButton->setVisible(true);
+                    }
+                    if ( gitToolsVersion != ToolsVersion )
+                    {
+                        update_status_bar("Found Tools updates");
+                        ui->CheckUpdate_pushButton->setVisible(true);
+                    }
+                    if (( gitVersion != Version ) && ( gitToolsVersion != ToolsVersion ))
+                    {
+                        update_status_bar("Found NOVAembed and Tools updates");
+                        ui->CheckUpdate_pushButton->setVisible(true);
+                    }
+                }
+                else
+                {
+                    update_status_bar("No updates found");
+                    ui->CheckUpdate_pushButton->setVisible(false);
+                }
             }
 
         }

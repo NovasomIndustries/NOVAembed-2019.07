@@ -1,4 +1,5 @@
 [NOVAembed Configuration]
-Version=2019.7.01rc15
+Version=2019.7.01
+rcVersion=rc15
 SystemRepoServer=93.41.190.216
 BackupSystemRepoServer=93.41.190.216
