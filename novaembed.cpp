@@ -1229,13 +1229,10 @@ void NOVAembed::on_CheckUpdate_pushButton_clicked()
     {
         update_status_bar("Updating NOVAembed");
         int result = run_script();
-        if (  result == 0 )
-        {
-            update_status_bar("NOVAembed updated. Please restart NOVAembed");
-            QMessageBox::StandardButton reply1 = QMessageBox::question(this, "NOVAembed Updated!" ,"NOVAembed has been updated. Please close the application, or simply hit the \"Yes\" button", QMessageBox::Yes|QMessageBox::No);
-            if (reply1 == QMessageBox::Yes)
-                exit(0);
-        }
+        update_status_bar("NOVAembed updated. Please restart NOVAembed");
+        QMessageBox::StandardButton reply1 = QMessageBox::question(this, "NOVAembed Updated!" ,"NOVAembed has been updated. Please close the application, or simply hit the \"Yes\" button", QMessageBox::Yes|QMessageBox::No);
+        if (reply1 == QMessageBox::Yes)
+            exit(0);
     }
     else
         update_status_bar("Update cancelled by user");
