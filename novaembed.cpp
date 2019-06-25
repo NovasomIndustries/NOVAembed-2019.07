@@ -1198,6 +1198,30 @@ void NOVAembed::on_CheckUpdate_pushButton_clicked()
         out << QString("echo \"**********************************************\"  >> "+instpath+"/Logs/update.log\n");
         out << QString("./update_components >> "+instpath+"/Logs/update.log\n");
     }
+    if ( CurrentDevelopment == "Devel" )
+    {
+        if ( gitrcVersion != rcVersion )
+        {
+            out << QString("#!/bin/sh\n");
+            out << QString("cd "+instpath+"/Utils\n");
+            out << QString("echo 0 > /tmp/result\n");
+            out << QString("echo \"**********************************************\" >> "+instpath+"/Logs/update.log\n");
+            out << QString("echo \"Update started on `date`\" >> "+instpath+"/Logs/update.log\n");
+            out << QString("echo \"**********************************************\"  >> "+instpath+"/Logs/update.log\n");
+            out << QString("./update_all >> "+instpath+"/Logs/update.log\n");
+        }
+
+        if ( gitrcToolsVersion != rcToolsVersion )
+        {
+            out << QString("#!/bin/sh\n");
+            out << QString("cd "+instpath+"/Utils\n");
+            out << QString("echo 0 > /tmp/result\n");
+            out << QString("echo \"**********************************************\" >> "+instpath+"/Logs/update.log\n");
+            out << QString("echo \"Tools Update started on `date`\" >> "+instpath+"/Logs/update.log\n");
+            out << QString("echo \"**********************************************\"  >> "+instpath+"/Logs/update.log\n");
+            out << QString("./update_components >> "+instpath+"/Logs/update.log\n");
+        }
+    }
 
     scriptfile.close();
     QMessageBox::StandardButton reply = QMessageBox::question(this, "NOVAembed will be Updated!" ,"NOVAembed will be updated. After the updates the application NOVAembed should be shutted down and must be manually restarted.\nIf you have unsaved work press \"No\" and save your work, but remember to restart NOVAembed.\n\nDo you want to update NOVAembed?", QMessageBox::Yes|QMessageBox::No);
