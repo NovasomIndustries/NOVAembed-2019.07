@@ -1269,12 +1269,14 @@ int NOVAembed::check_uSD_present(QString uSD_Current_Device)
     {
         if ( devptr.isFile())
         {
-            QMessageBox msgBox;
-            msgBox.setText("The device /dev/"+uSD_Current_Device+" is actually a file!");
-            msgBox.setInformativeText("\nThis means a previous operation failed in some way.\nPlease remove your device from the virtual machine and retry the operation once the device has been inserted.\nNOVAembed will cleanup the offending files.");
-            msgBox.setStandardButtons(QMessageBox::Yes);
-            msgBox.setDefaultButton(QMessageBox::Yes);
-            msgBox.exec();
+            QMessageBox mb("Error",
+                "The device /dev/"+uSD_Current_Device+" is actually a file!\n\nThis means a previous operation failed in some way.\nPlease remove your device from the virtual machine and retry the operation once the device has been inserted.\n\nNOVAembed will cleanup the offending files.",
+                QMessageBox::NoIcon,
+                QMessageBox::Yes | QMessageBox::Default,
+                QMessageBox::NoButton,
+                QMessageBox::NoButton);
+            mb.exec();
+
             system ("if ! [ `file /dev/sdb | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdb; fi\n");
             system ("if ! [ `file /dev/sdc | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdc; fi\n");
             system ("if ! [ `file /dev/sdd | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdd; fi\n");
@@ -1289,13 +1291,27 @@ int NOVAembed::check_uSD_present(QString uSD_Current_Device)
     }
     else
     {
-        QMessageBox msgBox;
-        msgBox.setText("The device /dev/"+uSD_Current_Device+" is not present!");
-        msgBox.setInformativeText("This means you don't have a writeable device inserted, or the virtual machine has no ownership of the device.\n\nPlease insert your device or give the virtual machine the ownership of the device and retry the operation once the device has been inserted.");
-        msgBox.setStandardButtons(QMessageBox::Yes);
-        msgBox.setDefaultButton(QMessageBox::Yes);
-        msgBox.exec();
+        QMessageBox mb("Error",
+            "The device /dev/"+uSD_Current_Device+" is not present!\n\nThis means you don't have a writeable device inserted, or the virtual machine has no ownership of the device.\n\nPlease insert your device or give the virtual machine the ownership of the device and retry the operation once the device has been inserted.",
+            QMessageBox::NoIcon,
+            QMessageBox::Yes | QMessageBox::Default,
+            QMessageBox::NoButton,
+            QMessageBox::NoButton);
+        mb.exec();
+
         update_status_bar("/dev/"+uSD_Device+" does not exist");
     }
     return 1;
 }
+/*
+ * QMessageBox mb("Application Name",
+                           "Hardware failure.\n\nDisk error detected\nDo you want to stop?",
+                           QMessageBox::NoIcon,
+                           QMessageBox::Yes | QMessageBox::Default,
+                           QMessageBox::NoButton,
+                           QMessageBox::NoButton);
+
+QPixmap exportSuccess("/media/msi/Information/Pictures/Icons/Icons Pack/PNG/48X48/about.png");
+mb.setIconPixmap(exportSuccess);
+mb.exec();
+*/

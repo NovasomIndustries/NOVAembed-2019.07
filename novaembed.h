@@ -17,7 +17,7 @@
 
 #define INSTALLATION_PATH   "/Devel/NOVAsdk"
 #define NOVAEMBED_VERSION   "2019.07"
-#define RK_M7_KERNEL        "linux-4.4.167_M7"
+#define RK_M7_KERNEL        "linux-4.4.180_M7"
 #define QUALCOMM_KERNEL     "linux-4.11.0-QualcommLinaro"
 #define NXP_P_KERNEL        "linux-imx_4.1.15_1.2.0_ga"
 #define NXP_U_KERNEL        "linux-imx_4.1.43"
