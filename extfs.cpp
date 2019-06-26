@@ -330,6 +330,17 @@ void NOVAembed::on_ExtFSBSPFSelect_pushButton_clicked()
 
 void NOVAembed::on_ExtFS_RemoveFS_clicked()
 {
+    if ( ui->ExtFS_comboBox->currentText() == "" )
+    {
+        QMessageBox mb("Error",
+            "Please select a file system to remove.",
+            QMessageBox::NoIcon,
+            QMessageBox::Yes | QMessageBox::Default,
+            QMessageBox::NoButton,
+            QMessageBox::NoButton);
+        mb.exec();
+        return;
+    }
     QMessageBox::StandardButton reply;
     update_status_bar("About to remove "+ui->ExtFS_comboBox->currentText()+" ...");
     QString currentboard=ui->Board_comboBox->currentText();
