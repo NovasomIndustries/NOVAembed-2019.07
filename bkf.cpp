@@ -753,16 +753,18 @@ void qSleep(int ms)
 void NOVAembed::on_Write_uSD_pushButton_clicked()
 {
     /*uSD_Device_comboBox*/
+    uSD_Device = ui->uSD_Device_comboBox->currentText();
+    if ( check_uSD_present(uSD_Device) == 1)
+        return;
+
     NumberOfUserPartitions = ui->UserPartition_comboBox->currentText();
     if ( ui->UserPartition_comboBox->currentText() == "2")
     {
         if ((UserPartition1Size == "0") && (UserPartition2Size == "0"))
             UserPartition1Size = "32";    /* If both are 0 set user1 for 32MB */
     }
-
     ui->UserPartition1Size_lineEdit->setText(UserPartition1Size);
     ui->UserPartition2Size_lineEdit->setText(UserPartition2Size);
-    uSD_Device = ui->uSD_Device_comboBox->currentText();
     QFile scriptfile("/tmp/script");
     update_status_bar("Writing uSD with "+FileSystemName);
 

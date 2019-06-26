@@ -250,6 +250,10 @@ void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
 
 void NOVAembed::on_ExtFS_Write_uSD_pushButton_clicked()
 {
+    QString extfsuSD_Device = ui->ExtFS_uSD_Device_comboBox->currentText();
+    if ( check_uSD_present(extfsuSD_Device) == 1 )
+        return;
+
     QFile scriptfile("/tmp/script");
     QString full_path;
     QFileInfo fi(ui->ExtFSBSPFselectedlineEdit->text());

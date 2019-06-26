@@ -81,6 +81,7 @@ private slots:
     int CheckIfKernelsPresent();
     void uSD_Write_frame_enable();
     void ExtListHelper();
+    int check_uSD_present(QString uSD_Current_Device);
 
     /* Helper Functions End */
 
