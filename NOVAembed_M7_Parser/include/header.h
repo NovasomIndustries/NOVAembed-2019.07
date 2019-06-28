@@ -8,6 +8,7 @@
 \n\
 	chosen {\n\
 		bootargs = \"earlycon=uart8250,mmio32,0xff130000 swiotlb=1 kpti=0 console=ttyFIQ0\";\n\
+		stdout-path = \"serial2:115200n8\";\n\
 	};\n\
 \n\
 	fiq-debugger {\n\

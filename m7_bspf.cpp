@@ -184,12 +184,12 @@ void NOVAembed::on_M7_Load_pushButton_clicked()
         return;
     else
     {
-        on_P_Clear_pushButton_clicked();
+        on_M7_Clear_pushButton_clicked();
         M7_load_BSPF_File(fileName);
         update_status_bar("File "+Last_M7_BSPFactoryFile+" loaded");
         QFileInfo fi(fileName);
-        ui->P_Current_BSPF_File_label->setText(fi.baseName()+".bspf");
-        ui->P_Generate_pushButton->setText("Save and Generate "+fi.baseName()+".dtb");
+        ui->M7_Current_BSPF_File_label->setText(fi.baseName()+".bspf");
+        ui->M7_Generate_pushButton->setText("Save and Generate "+fi.baseName()+".dtb");
     }
 }
 
