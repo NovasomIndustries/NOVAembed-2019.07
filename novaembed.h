@@ -338,8 +338,6 @@ private slots:
 
     void on_ExtFS_CheckAvailable_FS_pushButton_clicked();
 
-    void on_ExtFS_Available_comboBox_currentIndexChanged(const QString &arg1);
-
     void on_ExtFS_DownloadSelected_FS_pushButton_clicked();
 
     void on_HUM_pushButton_clicked();
@@ -367,6 +365,8 @@ private slots:
     void on_U_UART5_checkBox_toggled(bool checked);
 
     void on_ExtFS_RemoveFS_clicked();
+
+    void on_ExtFS_Available_comboBox_currentIndexChanged(int index);
 
 private:
     Ui::NOVAembed *ui;
