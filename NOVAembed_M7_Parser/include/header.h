@@ -450,7 +450,7 @@
 	non-removable;\n\
 	num-slots = <1>;\n\
 	pinctrl-names = \"default\";\n\
-	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;\n\
+	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8 &emmc_rstnout>;\n\
 	status = \"okay\";\n\
 };\n\
 &sdio {\n\

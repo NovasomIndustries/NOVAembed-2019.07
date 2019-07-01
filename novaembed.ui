@@ -107472,7 +107472,7 @@ a PCAP or an external RT touch</string>
         <rect>
          <x>100</x>
          <y>150</y>
-         <width>211</width>
+         <width>111</width>
          <height>21</height>
         </rect>
        </property>
@@ -107491,6 +107491,22 @@ a PCAP or an external RT touch</string>
        </property>
        <property name="text">
         <string>GB minimum</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="MBytesLabel">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>150</y>
+         <width>221</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>

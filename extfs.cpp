@@ -135,20 +135,7 @@ const char *cmd;
             imgFileName[i] = "";
             break;
         }
-        ExternalFileSystemsFile=instpath+"/ExternalFileSystems/"+currentboard+"/"+imgFileName[i];
-        QFileInfo fi(ExternalFileSystemsFile);
-
-        if ( ! fi.exists())
-            ui->ExtFS_Available_comboBox->addItem(imgName[i]);
-        else
-        {
-            if ( fi.size() != imgFileSize[i].toInt())
-            {
-                std::cout << "#"<<i<<" fi.size() : " << fi.size() << " != " << imgName[i].toLatin1().constData() << " : " << imgFileSize[i].toInt() << "\n" << std::flush;
-
-                ui->ExtFS_Available_comboBox->addItem(imgName[i]);
-            }
-        }
+        ui->ExtFS_Available_comboBox->addItem(imgName[i]);
     }
     ui->ExtFS_Available_comboBox->setCurrentIndex(0);
     i = 0;
@@ -161,7 +148,8 @@ const char *cmd;
 
     int num = imgFileSize[i].toInt();
     num /= (1024*1024);
-    ui->ExtFSFileSize_lineEdit->setText(imgFileSize[i] +" bytes ("+QString::number(num)+" MB)");
+    ui->ExtFSFileSize_lineEdit->setText(imgFileSize[i]);
+    ui->MBytesLabel->setText(" bytes ("+QString::number(num)+" MB)");
 }
 
 
@@ -177,34 +165,79 @@ void NOVAembed::on_ExtFS_Available_comboBox_currentIndexChanged(int index)
         ui->ExtFSBoard_lineEdit->setText(imgDescription[index]);
         int num = imgFileSize[index].toInt();
         num /= (1024*1024);
-        ui->ExtFSFileSize_lineEdit->setText(imgFileSize[index] +" bytes ("+QString::number(num)+" MB)");    }
+        ui->ExtFSFileSize_lineEdit->setText(imgFileSize[index] );
+        ui->MBytesLabel->setText(" bytes ("+QString::number(num)+" MB)");
+     }
 }
 
 void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
 {
+
+    QString force_yes="NO";
+
     QFile scriptfile("/tmp/script");
     QString currentboard=ui->Board_comboBox->currentText();
     if ( ui->Board_comboBox->currentText() == "P Series")
         currentboard="P";
-    if ( ! scriptfile.open(QIODevice::WriteOnly | QIODevice::Text) )
+
+    QString ExternalFileSystemsFile=instpath+"/ExternalFileSystems/"+currentboard+"/"+ui->ExtFSFileName_lineEdit->text();
+    QFileInfo fi(ExternalFileSystemsFile);
+
+    if (  fi.exists())
     {
-        update_status_bar("Unable to create /tmp/script");
-        return;
-    }
-    QTextStream out(&scriptfile);
-    out << QString("#!/bin/sh\n");
-    out << QString("cd "+instpath+"/Utils\n");
-    out << QString("./GetExternalFS "+currentboard+" "+repo_server+" "+backup_repo_server+" "+ui->ExtFSFileName_lineEdit->text()+"\n");
-    scriptfile.close();
-    if ( run_script() == 0)
-    {
-        ui->ExtFS_comboBox->addItem(ui->ExtFSFileName_lineEdit->text());
-        update_status_bar("File System "+ui->ExtFS_Available_comboBox->currentText()+" downloaded");
+        if ( fi.size() != ui->ExtFSFileSize_lineEdit->text().toInt())
+        {
+            std::cout << "fi.size() : " << fi.size() << " != " << ui->ExtFSFileName_lineEdit->text().toLatin1().constData() << " : " << ui->ExtFSFileSize_lineEdit->text().toInt() << "\n" << std::flush;
+            force_yes="YES";
+        }
+        else
+        {
+            QMessageBox::StandardButton reply = QMessageBox::question(this, "Warning","A file system called\n"+ui->ExtFSFileName_lineEdit->text()+"\nalready exists and has the same size.\n\nReally do you want to download it again?", QMessageBox::Yes|QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+                force_yes = "YES";
+        }
     }
     else
-        update_status_bar("File System "+ui->ExtFS_Available_comboBox->currentText()+" download error");
-}
+        force_yes="YES";
 
+    if (force_yes == "YES")
+    {
+        QMessageBox::StandardButton reply = QMessageBox::question(this, "Message","About to download\n"+ui->ExtFSFileName_lineEdit->text()+"\nof "+ui->ExtFSFileSize_lineEdit->text()+" "+ui->MBytesLabel->text()+".\nAre you sure?", QMessageBox::Yes|QMessageBox::No);
+        if (reply == QMessageBox::Yes)
+        {
+            QFile fsfile( instpath+"/ExternalFileSystems/"+currentboard+"/"+ui->ExtFSFileName_lineEdit->text());
+            fsfile.remove();
+            update_status_bar(" Downloading "+ui->ExtFSFileName_lineEdit->text()+" from "+repo_server);
+            if ( ! scriptfile.open(QIODevice::WriteOnly | QIODevice::Text) )
+            {
+                update_status_bar("Unable to create /tmp/script");
+                return;
+            }
+            QTextStream out(&scriptfile);
+            out << QString("#!/bin/sh\n");
+            out << QString("cd "+instpath+"/Utils\n");
+            out << QString("./GetExternalFS "+currentboard+" "+repo_server+" "+backup_repo_server+" "+ui->ExtFSFileName_lineEdit->text()+"\n");
+            scriptfile.close();
+            if ( run_script() == 0)
+            {
+                ui->ExtFS_comboBox->addItem(ui->ExtFSFileName_lineEdit->text());
+                update_status_bar("File System "+ui->ExtFSFileName_lineEdit->text()+" downloaded");
+            }
+            else
+                update_status_bar("File System "+ui->ExtFSFileName_lineEdit->text()+" download error");
+        }
+        else
+        {
+            update_status_bar("Download cancelled");
+            return;
+        }
+    }
+    else
+    {
+        update_status_bar(ui->ExtFS_comboBox->currentText()+" Not downloaded");
+        return;
+    }
+}
 
 void NOVAembed::on_ExtFSBSPFSelect_pushButton_clicked()
 {
