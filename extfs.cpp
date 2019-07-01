@@ -175,8 +175,9 @@ void NOVAembed::on_ExtFS_Available_comboBox_currentIndexChanged(int index)
         ui->ExtFSVersion_lineEdit->setText(imgVersion[index]);
         ui->ExtFSuSDsize_lineEdit->setText(imgMinimumRequiredSD[index]);
         ui->ExtFSBoard_lineEdit->setText(imgDescription[index]);
-        ui->ExtFSFileSize_lineEdit->setText(imgFileSize[index]);
-    }
+        int num = imgFileSize[index].toInt();
+        num /= (1024*1024);
+        ui->ExtFSFileSize_lineEdit->setText(imgFileSize[index] +" bytes ("+QString::number(num)+" MB)");    }
 }
 
 void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
