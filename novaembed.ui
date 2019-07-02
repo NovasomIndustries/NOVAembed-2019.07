@@ -107219,7 +107219,7 @@ a PCAP or an external RT touch</string>
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>471</width>
+        <width>631</width>
         <height>301</height>
        </rect>
       </property>
@@ -107234,7 +107234,7 @@ a PCAP or an external RT touch</string>
         <rect>
          <x>10</x>
          <y>30</y>
-         <width>451</width>
+         <width>611</width>
          <height>21</height>
         </rect>
        </property>
@@ -107252,7 +107252,7 @@ a PCAP or an external RT touch</string>
         <rect>
          <x>100</x>
          <y>60</y>
-         <width>361</width>
+         <width>521</width>
          <height>21</height>
         </rect>
        </property>
@@ -107283,9 +107283,9 @@ a PCAP or an external RT touch</string>
       <widget class="QPushButton" name="ExtFS_DownloadSelected_FS_pushButton">
        <property name="geometry">
         <rect>
-         <x>10</x>
+         <x>250</x>
          <y>270</y>
-         <width>451</width>
+         <width>121</width>
          <height>21</height>
         </rect>
        </property>
@@ -107367,7 +107367,7 @@ a PCAP or an external RT touch</string>
         <rect>
          <x>100</x>
          <y>90</y>
-         <width>361</width>
+         <width>521</width>
          <height>21</height>
         </rect>
        </property>
@@ -107377,7 +107377,7 @@ a PCAP or an external RT touch</string>
         <rect>
          <x>100</x>
          <y>120</y>
-         <width>361</width>
+         <width>521</width>
          <height>21</height>
         </rect>
        </property>
@@ -107397,7 +107397,7 @@ a PCAP or an external RT touch</string>
         <rect>
          <x>100</x>
          <y>210</y>
-         <width>361</width>
+         <width>521</width>
          <height>21</height>
         </rect>
        </property>
@@ -107407,7 +107407,7 @@ a PCAP or an external RT touch</string>
         <rect>
          <x>10</x>
          <y>0</y>
-         <width>341</width>
+         <width>611</width>
          <height>20</height>
         </rect>
        </property>
@@ -107516,7 +107516,7 @@ a PCAP or an external RT touch</string>
         <x>650</x>
         <y>10</y>
         <width>581</width>
-        <height>261</height>
+        <height>301</height>
        </rect>
       </property>
       <property name="frameShape">
@@ -107529,7 +107529,7 @@ a PCAP or an external RT touch</string>
        <property name="geometry">
         <rect>
          <x>420</x>
-         <y>230</y>
+         <y>270</y>
          <width>151</width>
          <height>21</height>
         </rect>
@@ -107542,7 +107542,7 @@ a PCAP or an external RT touch</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>230</y>
+         <y>270</y>
          <width>121</width>
          <height>21</height>
         </rect>
@@ -107679,7 +107679,7 @@ a PCAP or an external RT touch</string>
        <property name="geometry">
         <rect>
          <x>200</x>
-         <y>120</y>
+         <y>150</y>
          <width>81</width>
          <height>21</height>
         </rect>
@@ -107692,7 +107692,7 @@ a PCAP or an external RT touch</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>120</y>
+         <y>150</y>
          <width>121</width>
          <height>20</height>
         </rect>
@@ -107716,7 +107716,7 @@ a PCAP or an external RT touch</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>150</y>
+         <y>180</y>
          <width>561</width>
          <height>21</height>
         </rect>
@@ -107750,7 +107750,7 @@ a PCAP or an external RT touch</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>190</y>
+         <y>220</y>
          <width>251</width>
          <height>21</height>
         </rect>
@@ -107762,6 +107762,30 @@ a PCAP or an external RT touch</string>
        </property>
        <property name="text">
         <string>Manual remove selected file system !</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_66">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>110</y>
+         <width>411</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>9</pointsize>
+         <weight>75</weight>
+         <italic>true</italic>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Note : Not all boards can be customized with a user bspf</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </widget>
