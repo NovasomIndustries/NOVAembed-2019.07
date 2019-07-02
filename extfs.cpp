@@ -188,13 +188,19 @@ void NOVAembed::on_ExtFS_DownloadSelected_FS_pushButton_clicked()
         if ( fi.size() != ui->ExtFSFileSize_lineEdit->text().toInt())
         {
             std::cout << "fi.size() : " << fi.size() << " != " << ui->ExtFSFileName_lineEdit->text().toLatin1().constData() << " : " << ui->ExtFSFileSize_lineEdit->text().toInt() << "\n" << std::flush;
-            force_yes="YES";
+            QMessageBox::StandardButton reply = QMessageBox::question(this, "Warning","A file system called\n"+ui->ExtFSFileName_lineEdit->text()+"\nalready exists but has different size,\n probably due to a partial download or a network error.\n\nPress \"Yes\" to download it again.", QMessageBox::Yes|QMessageBox::No);
+            if (reply == QMessageBox::Yes)
+                force_yes = "YES";
+            else
+                return;
         }
         else
         {
             QMessageBox::StandardButton reply = QMessageBox::question(this, "Warning","A file system called\n"+ui->ExtFSFileName_lineEdit->text()+"\nalready exists and has the same size.\n\nReally do you want to download it again?", QMessageBox::Yes|QMessageBox::No);
             if (reply == QMessageBox::Yes)
                 force_yes = "YES";
+            else
+                return;
         }
     }
     else
