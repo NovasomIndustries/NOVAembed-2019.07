@@ -26,7 +26,7 @@ extern  QString backup_repo_server;
 
 #define     DEBUG_ON    1
 
-#define MAXSRVIMAGES 10
+#define MAXSRVIMAGES 32
 QString imgFileName[MAXSRVIMAGES] , imgName[MAXSRVIMAGES] , imgVersion[MAXSRVIMAGES] , imgMinimumRequiredSD[MAXSRVIMAGES] , imgDescription[MAXSRVIMAGES] , imgFileSize[MAXSRVIMAGES];
 
 void NOVAembed::ExtListHelper()
