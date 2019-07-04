@@ -293,8 +293,8 @@ void NOVAembed::on_ExtFS_Write_uSD_pushButton_clicked()
         update_status_bar("Unable to create /tmp/script");
         return;
     }
-    if ( ui->Board_comboBox->currentText() == "U5")
-        full_path=instpath+"/ExternalFileSystems/"+currentboard+"/"+ui->ExtFS_comboBox->currentText();
+
+    full_path=instpath+"/ExternalFileSystems/"+currentboard+"/"+ui->ExtFS_comboBox->currentText();
 
     QTextStream out(&scriptfile);
     out << QString("#!/bin/sh\n");
