@@ -132,6 +132,8 @@ QString PixMapName="";
         system_editor = "kwrite";
     if ( QFile("/usr/bin/xedit").exists())
         system_editor = "xedit";
+    if ( QFile("/usr/bin/vim").exists())
+        system_editor = "vim";
     if ( QFile("/usr/bin/okular").exists())
         system_pdf_viewer = "okular";
     if ( QFile("/usr/bin/evince").exists())
