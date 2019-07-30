@@ -1,14 +1,13 @@
 #define dts_header "\n\
 /dts-v1/;\n\
-#include \"rk3328.dtsi\"\n\
+#include \"rk3328.dtsi\" \n\
 #include <dt-bindings/input/input.h>\n\
 / {\n\
 	model = \"Rockchip RK3328 EVB\";\n\
 	compatible = \"rockchip,rk3328-evb\", \"rockchip,rk3328\";\n\
 \n\
 	chosen {\n\
-		bootargs = \"earlycon=uart8250,mmio32,0xff130000 swiotlb=1 kpti=0 console=ttyFIQ0\";\n\
-		stdout-path = \"serial2:115200n8\";\n\
+		bootargs = \"rockchip_jtag earlyprintk=uart8250-32bit,0xff130000\";\n\
 	};\n\
 \n\
 	fiq-debugger {\n\
@@ -29,16 +28,23 @@
 		#clock-cells = <0>;\n\
 	};\n\
 \n\
+	sdio_pwrseq: sdio-pwrseq {\n\
+		compatible = \"mmc-pwrseq-simple\";\n\
+		pinctrl-names = \"default\";\n\
+		pinctrl-0 = <&wifi_enable_h>;\n\
+		reset-gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;\n\
+	};\n\
+\n\
 	sound {\n\
-		compatible = \"simple-audio-card\";\n\
+        compatible = \"simple-audio-card\";\n\
 		simple-audio-card,format = \"i2s\";\n\
 		simple-audio-card,mclk-fs = <256>;\n\
 		simple-audio-card,name = \"rockchip,rk3328\";\n\
 		simple-audio-card,cpu {\n\
-			sound-dai = <&i2s1>;\n\
+            sound-dai = <&i2s1>;\n\
 		};\n\
 		simple-audio-card,codec {\n\
-			sound-dai = <&codec>;\n\
+            sound-dai = <&codec>;\n\
 		};\n\
 	};\n\
 \n\
@@ -48,10 +54,10 @@
 		simple-audio-card,mclk-fs = <128>;\n\
 		simple-audio-card,name = \"rockchip,hdmi\";\n\
 		simple-audio-card,cpu {\n\
-			sound-dai = <&i2s0>;\n\
+            sound-dai = <&i2s0>;\n\
 		};\n\
 		simple-audio-card,codec {\n\
-			sound-dai = <&hdmi>;\n\
+            sound-dai = <&hdmi>;\n\
 		};\n\
 	};\n\
 \n\
@@ -73,20 +79,24 @@
 \n\
 	vcc_host_vbus: host-vbus-regulator {\n\
 		compatible = \"regulator-fixed\";\n\
+		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;\n\
+		pinctrl-names = \"default\";\n\
+		pinctrl-0 = <&host_vbus_drv>;\n\
 		regulator-name = \"vcc_host_vbus\";\n\
 		regulator-min-microvolt = <5000000>;\n\
 		regulator-max-microvolt = <5000000>;\n\
-        regulator-always-on;\n\
-        regulator-boot-on;\n\
+		enable-active-high;\n\
 	};\n\
 \n\
     vcc_otg_vbus: otg-vbus-regulator {\n\
         compatible = \"regulator-fixed\";\n\
+        gpio = <&gpio0 RK_PD3 GPIO_ACTIVE_HIGH>;\n\
+        pinctrl-names = \"default\";\n\
+        pinctrl-0 = <&otg_vbus_drv>;\n\
         regulator-name = \"vcc_otg_vbus\";\n\
-		regulator-min-microvolt = <5000000>;\n\
-		regulator-max-microvolt = <5000000>;\n\
-        regulator-always-on;\n\
-        regulator-boot-on;\n\
+        regulator-min-microvolt = <5000000>;\n\
+        regulator-max-microvolt = <5000000>;\n\
+        enable-active-high;\n\
     };\n\
     vcc_phy: vcc-phy-regulator {\n\
         compatible = \"regulator-fixed\";\n\
@@ -102,13 +112,6 @@
         regulator-min-microvolt = <3300000>;\n\
         regulator-max-microvolt = <3300000>;\n\
         vin-supply = <&vcc_io>;\n\
-    };\n\
-\n\
-    xin32k: xin32k {\n\
-            compatible = \"fixed-clock\";\n\
-            clock-frequency = <32768>;\n\
-            clock-output-names = \"xin32k\";\n\
-            #clock-cells = <0>;\n\
     };\n\
 \n\
     wireless-bluetooth {\n\
@@ -128,18 +131,12 @@
         rockchip,grf = <&grf>;\n\
         wifi_chip_type = \"rtl8723bs\";\n\
         sdio_vref = <3300>;\n\
+        WIFI,host_poweren_gpio = <&gpio1 18 GPIO_ACTIVE_HIGH>;\n\
         WIFI,host_wake_irq = <&gpio1 19 GPIO_ACTIVE_HIGH>;\n\
         pinctrl-names = \"default\";\n\
         pinctrl-0 = <&bt_clk>;\n\
         status = \"okay\";\n\
     };\n\
-\n\
-	sdio_pwrseq: sdio-pwrseq {\n\
-		compatible = \"mmc-pwrseq-simple\";\n\
-		pinctrl-names = \"default\";\n\
-		pinctrl-0 = <&wifi_enable_h>;\n\
-		reset-gpios = <&gpio1 18 GPIO_ACTIVE_LOW>;\n\
-	};\n\
 \n\
     ir-receiver {\n\
         compatible = \"gpio-ir-receiver\";\n\
@@ -170,7 +167,7 @@
 \n\
 	pmic {\n\
 		pmic_int_l: pmic-int-l {\n\
-            rockchip,pins =<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;\n\
+		rockchip,pins =<2 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;\n\
 		};\n\
 	};\n\
 \n\
@@ -189,27 +186,17 @@
 			rockchip,pins =<0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;\n\
 		};\n\
 	};\n\
-        wireless-bluetooth {\n\
+    wireless-bluetooth {\n\
             uart0_gpios: uart0-gpios {\n\
             rockchip,pins =<1 10 RK_FUNC_GPIO &pcfg_pull_none>;\n\
             };\n\
-        };\n\
-        /* The following two pin defs are needed to have a 32KHz clock out for wlan.*/\n\
-        /* Seems silly to define the same pin twice and with different function, but I haven't find any other way to accomplish this.*/\n\
-        /* The order is also important, swapping the pins the clock is stucked at 1.*/\n\
-        /* Leaving the clock at 1 permits to the wifi module to run anyway, but seems to me an unstable situation. So this is it.*/\n\
-        wlan-clock {\n\
-            wireless_32k: wireless-32k {\n\
-            rockchip,pins =<1 RK_PD4 RK_FUNC_2 &pcfg_pull_up>;\n\
-            };\n\
-        };\n\
-        wlan-clock1 {\n\
+    };\n\
+    clkout32k {\n\
             bt_clk: bt-clk {\n\
             rockchip,pins =<1 RK_PD4 RK_FUNC_1 &pcfg_pull_up>;\n\
             };\n\
-        };\n\
+    };\n\
 };\n\
-\
 &codec {\n\
 	#sound-dai-cells = <0>;\n\
 	status = \"okay\";\n\
@@ -218,16 +205,37 @@
 &cpu0 {\n\
 	cpu-supply = <&vdd_arm>;\n\
 };\n\
-&dmc {\n\
-	center-supply = <&vdd_logic>;\n\
-	status = \"okay\";\n\
-};\n\
 \n\
 &display_subsystem {\n\
 	status = \"okay\";\n\
 };\n\
 \n\
+&emmc {\n\
+	bus-width = <8>;\n\
+	cap-mmc-highspeed;\n\
+	mmc-hs200-1_8v;\n\
+	supports-emmc;\n\
+	disable-wp;\n\
+	non-removable;\n\
+	num-slots = <1>;\n\
+	pinctrl-names = \"default\";\n\
+	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;\n\
+	status = \"okay\";\n\
+};\n\
+\n\
 &gmac2io {\n\
+	phy-supply = <&vcc_phy>;\n\
+	phy-mode = \"rgmii\";\n\
+	clock_in_out = \"input\";\n\
+	snps,reset-gpio = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;\n\
+	snps,reset-active-low;\n\
+	snps,reset-delays-us = <0 10000 50000>;\n\
+	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;\n\
+	assigned-clock-parents = <&gmac_clkin>, <&gmac_clkin>;\n\
+	pinctrl-names = \"default\";\n\
+	pinctrl-0 = <&rgmiim1_pins>;\n\
+	tx_delay = <0x26>;\n\
+	rx_delay = <0x11>;\n\
 	status = \"disabled\";\n\
 };\n\
 \n\
@@ -241,20 +249,17 @@
 	status = \"okay\";\n\
 };\n\
 \n\
-&gpu {\n\
-	status = \"okay\";\n\
+&gpu {\n\	status = \"okay\";\n\
 	mali-supply = <&vdd_logic>;\n\
 };\n\
 \n\
-&hdmi {\n\
-	#sound-dai-cells = <0>;\n\
+&hdmi {\n\	#sound-dai-cells = <0>;\n\
 	ddc-i2c-scl-high-time-ns = <9625>;\n\
 	ddc-i2c-scl-low-time-ns = <10000>;\n\
 	status = \"okay\";\n\
 };\n\
 \n\
-&hdmiphy {\n\
-	status = \"okay\";\n\
+&hdmiphy {\n\	status = \"okay\";\n\
 };\n\
 \n\
 &i2c1 {\n\
@@ -276,22 +281,18 @@
 		rtc {\n\
 			status = \"okay\";\n\
 		};\n\
-\n\
 		pwrkey {\n\
 			status = \"okay\";\n\
 		};\n\
-\n\
 		gpio {\n\
 			status = \"okay\";\n\
 		};\n\
-\n\
 		regulators {\n\
 			compatible = \"rk805-regulator\";\n\
 			status = \"okay\";\n\
 			#address-cells = <1>;\n\
 			#size-cells = <0>;\n\
-			vdd_logic: RK805_DCDC1 {\n\
-				regulator-compatible = \"RK805_DCDC1\";\n\
+			vdd_logic: RK805_DCDC1 {\n\				regulator-compatible = \"RK805_DCDC1\";\n\
 				regulator-name = \"vdd_logic\";\n\
 				regulator-min-microvolt = <712500>;\n\
 				regulator-max-microvolt = <1450000>;\n\
@@ -299,13 +300,11 @@
 				regulator-ramp-delay = <12500>;\n\
 				regulator-boot-on;\n\
 				regulator-always-on;\n\
-				regulator-state-mem {\n\
-					regulator-mode = <0x2>;\n\
+				regulator-state-mem {\n\					regulator-mode = <0x2>;\n\
 					regulator-on-in-suspend;\n\
 					regulator-suspend-microvolt = <1000000>;\n\
 				};\n\
 			};\n\
-\n\
 			vdd_arm: RK805_DCDC2 {\n\
 				regulator-compatible = \"RK805_DCDC2\";\n\
 				regulator-name = \"vdd_arm\";\n\
@@ -315,25 +314,21 @@
 				regulator-ramp-delay = <12500>;\n\
 				regulator-boot-on;\n\
 				regulator-always-on;\n\
-				regulator-state-mem {\n\
-					regulator-mode = <0x2>;\n\
+				regulator-state-mem {\n\					regulator-mode = <0x2>;\n\
 					regulator-on-in-suspend;\n\
 					regulator-suspend-microvolt = <950000>;\n\
 				};\n\
 			};\n\
-\n\
 			vcc_ddr: RK805_DCDC3 {\n\
 				regulator-compatible = \"RK805_DCDC3\";\n\
 				regulator-name = \"vcc_ddr\";\n\
 				regulator-initial-mode = <0x1>;\n\
 				regulator-boot-on;\n\
 				regulator-always-on;\n\
-				regulator-state-mem {\n\
-					regulator-mode = <0x2>;\n\
+				regulator-state-mem {\n\					regulator-mode = <0x2>;\n\
 					regulator-on-in-suspend;\n\
 				};\n\
 			};\n\
-\n\
 			vcc_io: RK805_DCDC4 {\n\
 				regulator-compatible = \"RK805_DCDC4\";\n\
 				regulator-name = \"vcc_io\";\n\
@@ -342,13 +337,11 @@
 				regulator-initial-mode = <0x1>;\n\
 				regulator-boot-on;\n\
 				regulator-always-on;\n\
-				regulator-state-mem {\n\
-					regulator-mode = <0x2>;\n\
+				regulator-state-mem {\n\					regulator-mode = <0x2>;\n\
 					regulator-on-in-suspend;\n\
 					regulator-suspend-microvolt = <3300000>;\n\
 				};\n\
 			};\n\
-\n\
 			vdd_18: RK805_LDO1 {\n\
 				regulator-compatible = \"RK805_LDO1\";\n\
 				regulator-name = \"vdd_18\";\n\
@@ -356,12 +349,10 @@
 				regulator-max-microvolt = <1800000>;\n\
 				regulator-boot-on;\n\
 				regulator-always-on;\n\
-				regulator-state-mem {\n\
-					regulator-on-in-suspend;\n\
+				regulator-state-mem {\n\					regulator-on-in-suspend;\n\
 					regulator-suspend-microvolt = <1800000>;\n\
 				};\n\
 			};\n\
-\n\
 			vcc_18emmc: RK805_LDO2 {\n\
 				regulator-compatible = \"RK805_LDO2\";\n\
 				regulator-name = \"vcc_18emmc\";\n\
@@ -369,12 +360,10 @@
 				regulator-max-microvolt = <1800000>;\n\
 				regulator-boot-on;\n\
 				regulator-always-on;\n\
-				regulator-state-mem {\n\
-					regulator-on-in-suspend;\n\
+				regulator-state-mem {\n\					regulator-on-in-suspend;\n\
 					regulator-suspend-microvolt = <1800000>;\n\
 				};\n\
 			};\n\
-\n\
 			vdd_11: RK805_LDO3 {\n\
 				regulator-compatible = \"RK805_LDO3\";\n\
 				regulator-name = \"vdd_11\";\n\
@@ -382,8 +371,7 @@
 				regulator-max-microvolt = <1100000>;\n\
 				regulator-boot-on;\n\
 				regulator-always-on;\n\
-				regulator-state-mem {\n\
-					regulator-on-in-suspend;\n\
+				regulator-state-mem {\n\					regulator-on-in-suspend;\n\
 					regulator-suspend-microvolt = <1100000>;\n\
 				};\n\
 			};\n\
@@ -391,23 +379,19 @@
 	};\n\
 };\n\
 \n\
-&h265e {\n\
-	status = \"okay\";\n\
+&h265e {\n\	status = \"okay\";\n\
 };\n\
 \n\
-&i2s0 {\n\
-	#sound-dai-cells = <0>;\n\
+&i2s0 {\n\	#sound-dai-cells = <0>;\n\
 	rockchip,bclk-fs = <128>;\n\
 	status = \"okay\";\n\
 };\n\
 \n\
-&i2s1 {\n\
-	#sound-dai-cells = <0>;\n\
+&i2s1 {\n\	#sound-dai-cells = <0>;\n\
 	status = \"okay\";\n\
 };\n\
 \n\
-&io_domains {\n\
-	status = \"okay\";\n\
+&io_domains {\n\	status = \"okay\";\n\
 	vccio1-supply = <&vcc_io>;\n\
 	vccio2-supply = <&vcc_18emmc>;\n\
 	vccio3-supply = <&vcc_io>;\n\
@@ -417,57 +401,37 @@
 	pmuio-supply = <&vcc_io>;\n\
 };\n\
 \n\
-\n\
 &rkvdec {\n\
 	status = \"okay\";\n\
 };\n\
 \n\
-&rockchip_suspend {\n\
-	status = \"okay\";\n\
-	rockchip,virtual-poweroff = <1>;\n\
-};\n\
-\n\
-&saradc {\n\
-	status = \"okay\";\n\
-	vref-supply = <&vdd_18>;\n\
-};\n\
 &uart0 {\n\
         pinctrl-names = \"default\";\n\
         pinctrl-0 = <&uart0_xfer &uart0_cts>;\n\
         status = \"okay\";\n\
 };\n\
 \n\
+&uart1 {\n\
+        status = \"okay\";\n\
+};\n\
 &uart2 {\n\
         status = \"okay\";\n\
 };\n\
 \n\
-&emmc {\n\
-	bus-width = <8>;\n\
-	cap-mmc-highspeed;\n\
-	mmc-hs200-1_8v;\n\
-	supports-emmc;\n\
+&sdio {\n\
+	bus-width = <4>;\n\
+	cap-sd-highspeed;\n\
+	cap-sdio-irq;\n\
 	disable-wp;\n\
+	keep-power-in-suspend;\n\
+	max-frequency = <150000000>;\n\
+	mmc-pwrseq = <&sdio_pwrseq>;\n\
 	non-removable;\n\
 	num-slots = <1>;\n\
 	pinctrl-names = \"default\";\n\
-	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8 &emmc_rstnout>;\n\
+	pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;\n\
+	supports-sdio;\n\
 	status = \"okay\";\n\
-};\n\
-&sdio {\n\
-        bus-width = <4>;\n\
-        cap-sd-highspeed;\n\
-        cap-sdio-irq;\n\
-        disable-wp;\n\
-        keep-power-in-suspend;\n\
-        max-frequency = <20000000>;\n\
-        mmc-pwrseq = <&sdio_pwrseq>;\n\
-        non-removable;\n\
-        num-slots = <1>;\n\
-        pinctrl-names = \"default\";\n\
-        pinctrl-0 = <&sdmmc1_bus4 &sdmmc1_cmd &sdmmc1_clk>;\n\
-        supports-sdio;\n\
-        sd-uhs-sdr104;\n\
-        status = \"okay\";\n\
 };\n\
 \n\
 &sdmmc {\n\
@@ -495,16 +459,13 @@
 \n\
 &u2phy {\n\
 	status = \"okay\";\n\
-};\n\
-\n\
-&u2phy_host {\n\
-        phy-supply = <&vcc_host_vbus>;\n\
-	status = \"okay\";\n\
-};\n\
-\n\
-&u2phy_otg {\n\
-        phy-supply = <&vcc_otg_vbus>;\n\
-	status = \"okay\";\n\
+	u2phy_host: host-port {\n\
+		status = \"okay\";\n\
+	};\n\
+	u2phy_otg: otg-port {\n\
+		vbus-supply = <&vcc_otg_vbus>;\n\
+		status = \"okay\";\n\
+	};\n\
 };\n\
 \n\
 &u3phy {\n\
@@ -521,7 +482,6 @@
 };\n\
 \n\
 &usb20_otg {\n\
-    dr_mode = \"host\";\n\
 	status = \"okay\";\n\
 };\n\
 \n\
@@ -562,15 +522,14 @@
 &i2c0 {\n\
 	status = \"okay\";\n\
 "
-
-#define i2c0_footer "\
+#define i2c0_footer "\n\
 };\n\
 "
 
 #define spi_defs "\n\
 &spi0 {\n\
         status = \"okay\";\n\
-        max-freq = <48000000>; /* spi internal clk, don't modify */\n\
+        max-freq = <48000000>;\n\
 "
 
 #define spidev_defs "\n\
@@ -581,10 +540,10 @@
                 spi-lsb-first;\n\
         };\n\
 "
+
 #define spi_footer "\n\
 };\n\
 "
-
 
 #define uart1_defs "\n\
 &uart1 {\n\
@@ -603,4 +562,3 @@
 #define dts_footer "\n\
 };\n\
 "
-
