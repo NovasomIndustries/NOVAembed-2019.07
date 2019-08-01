@@ -468,6 +468,16 @@
 	};\n\
 };\n\
 \n\
+&u2phy_otg {\n\
+        phy-supply = <&vcc_otg_vbus>;\n\
+	status = \"okay\";\n\
+};\n\
+\n\
+&usb20_otg {\n\
+    dr_mode = \"host\";\n\
+	status = \"okay\";\n\
+};\
+\n\
 &u3phy {\n\
 	vbus-supply = <&vcc_host_vbus>;\n\
 	status = \"okay\";\n\
@@ -478,10 +488,6 @@
 };\n\
 \n\
 &u3phy_pipe {\n\
-	status = \"okay\";\n\
-};\n\
-\n\
-&usb20_otg {\n\
 	status = \"okay\";\n\
 };\n\
 \n\
