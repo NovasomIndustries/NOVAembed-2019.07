@@ -124,7 +124,7 @@
         pinctrl-1 = <&uart0_gpios>;\n\
         BT,power_gpio = <&gpio1 21 GPIO_ACTIVE_HIGH>;\n\
         BT,wake_host_irq = <&gpio1 26 GPIO_ACTIVE_HIGH>;\n\
-        status = \"okay\";\n\
+        status = \"disabled\";\n\
     };\n\
     wireless-wlan {\n\
         compatible = \"wlan-platdata\";\n\
@@ -499,6 +499,9 @@
 	status = \"okay\";\n\
 };\n\
 \n\
+&wdt {\n\
+	status = \"okay\";\n\
+};\n\
 &usbdrd3 {\n\
 	status = \"okay\";\n\
 };\n\

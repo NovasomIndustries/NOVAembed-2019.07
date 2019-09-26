@@ -1018,9 +1018,15 @@ void NOVAembed::on_Write_AutoRun_pushButton_clicked()
     out << QString("#!/bin/sh\n");
     out << QString("cd "+instpath+"/Utils\n");
     if ( ui->Board_comboBox->currentText() == "M7")
-        out << QString("cd rock; ./store_application_storage "+ui->UserAutoRunSelectedlineEdit->text()+" /dev/"+uSD_Device+" >> "+instpath+"/Logs/uSD_Write\n");
+        out << QString("cd rock\n");
+    else if ( ui->Board_comboBox->currentText() == "M8")
+        out << QString("cd qcom\n");
+    else if ( ui->Board_comboBox->currentText() == "P Series")
+        out << QString("cd nxp\n");
     else
-        out << QString("./store_application_storage "+ui->UserAutoRunSelectedlineEdit->text()+" /dev/"+uSD_Device+" >> "+instpath+"/Logs/uSD_Write\n");
+        out << QString("cd nxp\n");
+    out << QString("./store_application_storage "+ui->UserAutoRunSelectedlineEdit->text()+" /dev/"+uSD_Device+" >> "+instpath+"/Logs/uSD_Write\n");
+
     scriptfile.close();
 
     if ( run_script() == 0)

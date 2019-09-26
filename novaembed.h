@@ -49,7 +49,7 @@
 #define HUM_M7              "N.M7-250518-HUM-M7.pdf"
 #define HUM_M8              "N.M8-091116-HUM-M8.pdf"
 
-#define SYSTEM_EDITOR       "vim"
+#define SYSTEM_EDITOR       "gedit"
 #define SYSTEM_PDFVIEWER    "okular"
 
 namespace Ui {

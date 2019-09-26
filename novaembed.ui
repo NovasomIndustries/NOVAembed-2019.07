@@ -106948,7 +106948,7 @@ a PCAP or an external RT touch</string>
         </font>
        </property>
        <property name="text">
-        <string>I2C 2</string>
+        <string>I2C 0</string>
        </property>
       </widget>
       <widget class="QLabel" name="label_148">
