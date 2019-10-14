@@ -968,23 +968,11 @@ QString line;
         {
             QString thepath;
 
-            thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/uboot.img";
+            thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/u-boot.sym";
             if ( check_file_present(thepath) == 0 )
-            {
-                thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/trust.img";
-                if ( check_file_present(thepath) == 0 )
-                {
-                    thepath=instpath+"/Bootloader/"+RK_M7_BOOTLOADER+"/idbloader.img";
-                    if ( check_file_present(thepath) == 0 )
-                        BootValid = "OK";
-                    else
-                        std::cout << "novaembed.cpp : M7 idbloader not found\n"<< thepath.toLatin1().constData() <<"\n" << std::flush;
-                }
-                else
-                    std::cout << "novaembed.cpp : M7 trust.img not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
-            }
+                BootValid = "OK";
             else
-                std::cout << "novaembed.cpp : M7 uboot.img not found : " << thepath.toLatin1().constData() <<"\n" << std::flush;
+                std::cout << "novaembed.cpp : M7 idbloader not found\n"<< thepath.toLatin1().constData() <<"\n" << std::flush;
         }
 
 
