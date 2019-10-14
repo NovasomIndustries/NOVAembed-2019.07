@@ -73,6 +73,7 @@ QString network_connected="none";
 QString updates_found="none";
 QString AlreadyCompiled = "NO";
 int skip_filesave_on_Generate_pushButton_clicked = 0;
+QString FileNameIfSkipped;
 
 extern  void storeNOVAembed_ini();
 QWidget *PBSP_stab,*UBSP_stab,*M8BSP_stab,*M7BSP_stab,*EXTFS_stab,*TOOL_stab,*TOOL_devel;

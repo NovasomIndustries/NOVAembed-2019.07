@@ -918,6 +918,7 @@ void NOVAembed::on_AddFileSystemConfig_pushButton_clicked()
 }
 
 extern      int skip_filesave_on_Generate_pushButton_clicked;
+extern      QString FileNameIfSkipped;
 
 void NOVAembed::on_UserBSPFSelect_pushButton_clicked()
 {
@@ -929,12 +930,16 @@ void NOVAembed::on_UserBSPFSelect_pushButton_clicked()
     if ( ui->Board_comboBox->currentText() == "M8")
         fileName = QFileDialog::getOpenFileName(this,tr("Select BSPF"), instpath+"/DtbUserWorkArea/M8Class_bspf",tr("BSPF (*.bspf)"));
     if ( ui->Board_comboBox->currentText() == "M7")
+    {
         fileName = QFileDialog::getOpenFileName(this,tr("Select BSPF"), instpath+"/DtbUserWorkArea/M7Class_bspf",tr("BSPF (*.bspf)"));
+        std::cout << "fileName : " << fileName.toLatin1().constData() << "\n" << std::flush;
+    }
     if (fileName.isEmpty())
         return;
     else
     {
         skip_filesave_on_Generate_pushButton_clicked = 1;
+        FileNameIfSkipped = fileName;
         if ( ui->Board_comboBox->currentText() == "P Series")
         {
             ui->P_EditBeforeGenerate_checkBox->setChecked(false);

@@ -206,6 +206,7 @@ void NOVAembed::on_M7_Save_pushButton_clicked()
 }
 
 extern      int skip_filesave_on_Generate_pushButton_clicked;
+extern      QString FileNameIfSkipped;
 
 void NOVAembed::on_M7_Generate_pushButton_clicked()
 {
@@ -238,6 +239,15 @@ QFileInfo fi;
         ui->M7_Generate_pushButton->setText("Save and Generate "+fi.baseName()+".dtb");
         M7_save_helper(fileName);
         Last_M7_BSPFactoryFile = fi.baseName();
+    }
+    else
+    {
+        QString fileName = FileNameIfSkipped;
+        QFileInfo fiLocal(fileName);
+        fi = fiLocal;
+        M7_save_helper(fileName);
+        Last_M7_BSPFactoryFile = fi.baseName();
+
     }
     update_status_bar("Generating dtb "+Last_M7_BSPFactoryFile+".dtb ...");
     if ( ! scriptfile.open(QIODevice::WriteOnly | QIODevice::Text) )
