@@ -807,7 +807,10 @@ void NOVAembed::on_Write_uSD_pushButton_clicked()
     if ( ui->Board_comboBox->currentText() == "M7")
     {
         out << QString("cd "+instpath+"/Utils/rock\n");
-        out << QString("./flashM7 "+NumberOfUserPartitions+" "+UserPartition1Size+" "+UserPartition2Size+" /dev/"+uSD_Device+" "+fi.baseName()+" > "+instpath+"/Logs/uSD_Write.log\n");
+        if ( ui->FileSystemOnSD_checkBox->isChecked() == true)
+            out << QString("./flash_sd_M7 "+NumberOfUserPartitions+" "+UserPartition1Size+" "+UserPartition2Size+" /dev/"+uSD_Device+" "+fi.baseName()+" > "+instpath+"/Logs/uSD_Write.log\n");
+        else
+            out << QString("./flashM7 "+NumberOfUserPartitions+" "+UserPartition1Size+" "+UserPartition2Size+" /dev/"+uSD_Device+" "+fi.baseName()+" > "+instpath+"/Logs/uSD_Write.log\n");
         if ( ui->UserAutoRun_checkBox->isChecked())
             out << QString("./store_application_storage "+ui->UserAutoRunSelectedlineEdit->text()+" /dev/"+uSD_Device+" >> "+instpath+"/Logs/uSD_Write.log\n");
     }

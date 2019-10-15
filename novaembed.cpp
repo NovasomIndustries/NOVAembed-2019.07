@@ -488,6 +488,8 @@ QString PixMapName="";
     system ("if ! [ `file /dev/sdc | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdc; fi\n");
     system ("if ! [ `file /dev/sdd | awk '{print $2}' | grep block` ]; then sudo rm /dev/sdd; fi\n");
     system ("if ! [ `file /dev/sde | awk '{print $2}' | grep block` ]; then sudo rm /dev/sde; fi\n");
+    ui->FileSystemOnSD_checkBox->setVisible(false);
+    ui->FileSystemOnSD_label->setVisible(false);
 }
 
 NOVAembed::~NOVAembed()
@@ -776,6 +778,8 @@ QString line;
         if ( ui->Board_comboBox->currentText() == "M7")
         {
         //    ui->label_61->setVisible(true);
+            ui->FileSystemOnSD_checkBox->setVisible(true);
+            ui->FileSystemOnSD_label->setVisible(true);
             ui->UserBSPFSelect_pushButton->setVisible(true);
             ui->UserBSPFselectedlineEdit->setVisible(true);
             ui->label_65->setVisible(true);

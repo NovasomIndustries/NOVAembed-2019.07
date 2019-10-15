@@ -1986,7 +1986,7 @@
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>160</y>
+         <y>190</y>
          <width>171</width>
          <height>21</height>
         </rect>
@@ -2005,7 +2005,7 @@
        <property name="geometry">
         <rect>
          <x>180</x>
-         <y>160</y>
+         <y>190</y>
          <width>271</width>
          <height>21</height>
         </rect>
@@ -2015,7 +2015,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>220</y>
+         <y>230</y>
          <width>21</width>
          <height>21</height>
         </rect>
@@ -2028,7 +2028,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>240</y>
+         <y>250</y>
          <width>81</width>
          <height>21</height>
         </rect>
@@ -2041,7 +2041,7 @@
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>240</y>
+         <y>250</y>
          <width>351</width>
          <height>21</height>
         </rect>
@@ -2051,7 +2051,7 @@
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>270</y>
+         <y>280</y>
          <width>171</width>
          <height>21</height>
         </rect>
@@ -2064,7 +2064,7 @@
        <property name="geometry">
         <rect>
          <x>30</x>
-         <y>220</y>
+         <y>230</y>
          <width>71</width>
          <height>20</height>
         </rect>
@@ -2161,6 +2161,42 @@
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QLabel" name="FileSystemOnSD_label">
+       <property name="geometry">
+        <rect>
+         <x>100</x>
+         <y>150</y>
+         <width>111</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <weight>50</weight>
+         <italic>true</italic>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>File system on SD</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="FileSystemOnSD_checkBox">
+       <property name="geometry">
+        <rect>
+         <x>230</x>
+         <y>150</y>
+         <width>88</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </widget>
