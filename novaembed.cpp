@@ -748,6 +748,8 @@ QString line;
         /* File system config files */
         ui->Board_comboBox->setCurrentText(_Board_comboBox);
         ui->UserPartition_comboBox->setCurrentText(NumberOfUserPartitions);
+        ui->FileSystemOnSD_checkBox->setVisible(false);
+        ui->FileSystemOnSD_label->setVisible(false);
 
         compile_NewFileSystemFileSystemConfigurationcomboBox();
         //compile_ExtFS_comboBox();
