@@ -919,6 +919,7 @@ void NOVAembed::on_AddFileSystemConfig_pushButton_clicked()
 
 extern      int skip_filesave_on_Generate_pushButton_clicked;
 extern      QString FileNameIfSkipped;
+extern      int generate_dtb_result;
 
 void NOVAembed::on_UserBSPFSelect_pushButton_clicked()
 {
@@ -976,6 +977,9 @@ void NOVAembed::on_UserBSPFSelect_pushButton_clicked()
         if ( ui->Board_comboBox->currentText() == "M7")
             Last_M7_BSPFactoryFile = ui->UserBSPFselectedlineEdit->text();
         storeNOVAembed_ini();
+        if (( KernelValid == "OK" ) && ( FSValid == "OK" ) && ( BootValid == "OK" ) && (generate_dtb_result == 0))
+            uSD_Write_frame_enable();
+
     }
 }
 

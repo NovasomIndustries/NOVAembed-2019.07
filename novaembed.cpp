@@ -77,6 +77,8 @@ QString FileNameIfSkipped;
 
 extern  void storeNOVAembed_ini();
 QWidget *PBSP_stab,*UBSP_stab,*M8BSP_stab,*M7BSP_stab,*EXTFS_stab,*TOOL_stab,*TOOL_devel;
+int     generate_dtb_result;
+
 
 /*****************************************************************************************************************************************************************************************/
 /*                                                                                    Code                                                                                               */

@@ -207,6 +207,7 @@ void NOVAembed::on_M7_Save_pushButton_clicked()
 
 extern      int skip_filesave_on_Generate_pushButton_clicked;
 extern      QString FileNameIfSkipped;
+extern      int generate_dtb_result;
 
 void NOVAembed::on_M7_Generate_pushButton_clicked()
 {
@@ -279,9 +280,13 @@ QFileInfo fi;
     {
         update_status_bar(fi.baseName()+".dtb compiled, dtb is in "+instpath+"/DtbUserWorkArea folder as "+Last_M7_BSPFactoryFile+".dtb");
         NOVAsom_Params_helper();
+        generate_dtb_result=0;
     }
     else
+    {
         update_status_bar("Error compiling "+fi.baseName()+".dtb");
+        generate_dtb_result=1;
+    }
 }
 
 
