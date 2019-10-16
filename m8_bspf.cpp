@@ -76,15 +76,26 @@ void NOVAembed::on_M8_Save_pushButton_clicked()
 }
 
 extern      int skip_filesave_on_Generate_pushButton_clicked;
+extern      QString FileNameIfSkipped;
+extern      int generate_dtb_result;
 
 void NOVAembed::on_M8_Generate_pushButton_clicked()
 {
 QFile scriptfile("/tmp/script");
 QString FileNameNoExtension;
 QFileInfo fi;
+QString dtc_file;
+
     if ( CheckIfKernelsPresent() == 1 )
     {
         update_status_bar("Kernel "+Kernel+" not present, download it.");
+        return;
+    }
+    dtc_file= instpath+"/Kernel/"+Kernel.toLatin1()+"/scripts/dtc/dtc";
+    QFile dtc_compiler(dtc_file);
+    if ( ! dtc_compiler.exists() )
+    {
+        update_status_bar("dtc executable not present, probably "+Kernel+" has not yet compiled. Please compile it.");
         return;
     }
     if ( skip_filesave_on_Generate_pushButton_clicked == 0)
@@ -101,6 +112,14 @@ QFileInfo fi;
         M8_save_helper(fileName);
         Last_M8_BSPFactoryFile = fi.baseName();
         FileNameNoExtension  = fi.baseName();
+    }
+    else
+    {
+        QString fileName = FileNameIfSkipped;
+        QFileInfo fiLocal(fileName);
+        fi = fiLocal;
+        M8_save_helper(fileName);
+        Last_M8_BSPFactoryFile = fi.baseName();
     }
 
     update_status_bar("Generating dtb "+FileNameNoExtension+".dtb ...");

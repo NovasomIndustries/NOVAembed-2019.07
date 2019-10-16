@@ -395,15 +395,25 @@ void NOVAembed::on_U_Save_pushButton_clicked()
 }
 
 extern      int skip_filesave_on_Generate_pushButton_clicked;
+extern      QString FileNameIfSkipped;
+extern      int generate_dtb_result;
 
 void NOVAembed::on_U_Generate_pushButton_clicked()
 {
 QFile scriptfile("/tmp/script");
 QFileInfo fi;
+QString dtc_file;
 
     if ( CheckIfKernelsPresent() == 1 )
     {
         update_status_bar("Kernel "+Kernel+" not present, download it.");
+        return;
+    }
+    dtc_file= instpath+"/Kernel/"+Kernel.toLatin1()+"/scripts/dtc/dtc";
+    QFile dtc_compiler(dtc_file);
+    if ( ! dtc_compiler.exists() )
+    {
+        update_status_bar("dtc executable not present, probably "+Kernel+" has not yet compiled. Please compile it.");
         return;
     }
     // Save .bspf and Generate .dtb
@@ -417,6 +427,14 @@ QFileInfo fi;
         fi = fiLocal;
         ui->U_Current_BSPF_File_label->setText(fi.baseName()+".bspf");
         ui->U_Generate_pushButton->setText("Save and Generate "+fi.baseName()+".dtb");
+        U_save_helper(fileName);
+        Last_U_BSPFactoryFile = fi.baseName();
+    }
+    else
+    {
+        QString fileName = FileNameIfSkipped;
+        QFileInfo fiLocal(fileName);
+        fi = fiLocal;
         U_save_helper(fileName);
         Last_U_BSPFactoryFile = fi.baseName();
     }

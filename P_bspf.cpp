@@ -2053,32 +2053,54 @@ void NOVAembed::on_P_Save_pushButton_clicked()
 }
 
 extern      int skip_filesave_on_Generate_pushButton_clicked;
+extern      QString FileNameIfSkipped;
 
 void NOVAembed::on_P_Generate_pushButton_clicked()
 {
 QFile scriptfile("/tmp/script");
 QString SDL_FileNameNoExtension ;
 QString QUAD_FileNameNoExtension;
+QString dtc_file;
+QFileInfo fi;
+
+
     if ( CheckIfKernelsPresent() == 1 )
     {
         update_status_bar("Kernel "+Kernel+" not present, download it.");
         return;
     }
-    // Save .bspf and Generate .dtb
-    QString fileName = QFileDialog::getSaveFileName(this,tr("Save .bspf"), instpath+"/DtbUserWorkArea/PClass_bspf",tr(".bspf (*.bspf)"));
-    if ( fileName.isEmpty() )
+    dtc_file= instpath+"/Kernel/"+Kernel.toLatin1()+"/scripts/dtc/dtc";
+    QFile dtc_compiler(dtc_file);
+    if ( ! dtc_compiler.exists() )
+    {
+        update_status_bar("dtc executable not present, probably "+Kernel+" has not yet compiled. Please compile it.");
         return;
-    QFileInfo fi(fileName);
+    }
     if ( skip_filesave_on_Generate_pushButton_clicked == 0)
     {
-        QFile scriptfile("/tmp/script");
+        // Save .bspf and Generate .dtb
+        QString fileName = QFileDialog::getSaveFileName(this,tr("Save .bspf"), instpath+"/DtbUserWorkArea/PClass_bspf",tr(".bspf (*.bspf)"));
+        if ( fileName.isEmpty() )
+            return;
+        QFileInfo fiLocal(fileName);
+        fi = fiLocal;
         ui->P_Current_BSPF_File_label->setText(fi.baseName()+".bspf");
         ui->P_Generate_pushButton->setText("Save and Generate "+fi.baseName()+".dtb");
         P_save_helper(fileName,"QUAD");
         P_save_helper(fileName,"SDL");
         P_save_helper(fileName,"");
+        Last_P_BSPFactoryFile = fi.baseName();
     }
-    Last_P_BSPFactoryFile = fi.baseName();
+    else
+    {
+        QString fileName = FileNameIfSkipped;
+        QFileInfo fiLocal(fileName);
+        fi = fiLocal;
+        P_save_helper(fileName,"QUAD");
+        P_save_helper(fileName,"SDL");
+        P_save_helper(fileName,"");
+        Last_P_BSPFactoryFile = fi.baseName();
+    }
     storeNOVAembed_ini();
     SDL_FileNameNoExtension  = "SDL_"+fi.baseName();
     QUAD_FileNameNoExtension = "QUAD_"+fi.baseName();

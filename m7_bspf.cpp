@@ -248,8 +248,8 @@ QFileInfo fi;
         fi = fiLocal;
         M7_save_helper(fileName);
         Last_M7_BSPFactoryFile = fi.baseName();
-
     }
+
     update_status_bar("Generating dtb "+Last_M7_BSPFactoryFile+".dtb ...");
     if ( ! scriptfile.open(QIODevice::WriteOnly | QIODevice::Text) )
     {
