@@ -79,10 +79,10 @@
 \n\
 	vcc_host_vbus: host-vbus-regulator {\n\
 		compatible = \"regulator-fixed\";\n\
-		gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;\n\
+		/*gpio = <&gpio0 RK_PA0 GPIO_ACTIVE_HIGH>;\n\
 		pinctrl-names = \"default\";\n\
 		pinctrl-0 = <&host_vbus_drv>;\n\
-		regulator-name = \"vcc_host_vbus\";\n\
+		*/regulator-name = \"vcc_host_vbus\";\n\
 		regulator-min-microvolt = <5000000>;\n\
 		regulator-max-microvolt = <5000000>;\n\
 		enable-active-high;\n\
@@ -178,9 +178,10 @@
 	};\n\
 \n\
 	usb {\n\
-		host_vbus_drv: host-vbus-drv {\n\
+		/*host_vbus_drv: host-vbus-drv {\n\
 			rockchip,pins =<0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;\n\
-		};\n\
+			rockchip,pins =<2 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;\n\
+		};*/\n\
 \n\
 		otg_vbus_drv: otg-vbus-drv {\n\
 			rockchip,pins =<0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>;\n\
@@ -479,7 +480,7 @@
 };\
 \n\
 &u3phy {\n\
-	vbus-supply = <&vcc_host_vbus>;\n\
+	/*vbus-supply = <&vcc_host_vbus>;*/\n\
 	status = \"okay\";\n\
 };\n\
 \n\
