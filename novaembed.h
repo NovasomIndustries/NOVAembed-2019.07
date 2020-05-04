@@ -37,7 +37,9 @@
 #define NXP_P_SOURCEME      "SourceMe32"
 #define NXP_U_SOURCEME      "SourceMe32"
 
-#define RK_M7_BOOTLOADER    "u-boot-novasomM7-2017.09"
+#define RK_M7_BOOTLOADER    "u-boot-novasomM7-2020-07"
+#define RK_M7_TRUST         "atf2.3_m7"
+#define RK_M7_RKBIN         "rkbin_m7"
 #define NXP_P_BOOTLOADER    "u-boot-novasomP-2015.04"
 #define NXP_U_BOOTLOADER    "u-boot-novasomU-2016.03"
 #define QUALCOMM_BOOTLOADER "u-boot-novasomM8-2017.11"

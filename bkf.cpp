@@ -114,6 +114,10 @@ void NOVAembed::on_BootLoaderCompile_pushButton_clicked()
         QString a=RK_M7_BOOTLOADER;
         update_status_bar("Cloning "+a+" boot loader for "+ui->Board_comboBox->currentText()+" ... ");
         system(instpath.toLatin1()+"/Utils/clone_singleboot "+RK_M7_BOOTLOADER+"_"+NOVAEMBED_VERSION+" "+RK_M7_BOOTLOADER);
+        update_status_bar("Cloning "+a+" trust for "+ui->Board_comboBox->currentText()+" ... ");
+        system(instpath.toLatin1()+"/Utils/clone_singleboot "+RK_M7_TRUST+"_"+NOVAEMBED_VERSION+" "+RK_M7_TRUST);
+        update_status_bar("Cloning "+a+" rkbin for "+ui->Board_comboBox->currentText()+" ... ");
+        system(instpath.toLatin1()+"/Utils/clone_singleboot "+RK_M7_RKBIN+"_"+NOVAEMBED_VERSION+" "+RK_M7_RKBIN);
     }
 
     QFile scriptfile("/tmp/script");
