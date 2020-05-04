@@ -94,7 +94,9 @@ QString PixMapName="";
     std::cout << "Starting now\n" << std::flush;
     system("rm -f /tmp/script");
     system("ln -s /Devel/NOVAsdk2019.07/Doc-2019.07 /Devel/NOVAsdk2019.07/Doc");
-
+    /* Check for required packages */
+    system("cd /Devel/NOVAsdk/Utils ; ./check4pkgs python-dev");
+    system("cd /Devel/NOVAsdk/Utils ; ./check4pkgs python3-dev");
     /* Get NOVAembed version*/
     system("cd /Devel/NOVAsdk/Qt ; ln -s NOVAsdk2019.07 NOVAsdk");
     QString strKeyLocalVersion("NOVAembed Configuration/");
