@@ -1141,7 +1141,7 @@ QString line;
                 if ( base != "" )
                     ui->M7_Current_BSPF_File_label->setText(base+".bspf");
 
-                M7_load_BSPF_File(instpath+"/DtbUserWorkArea/M7Class_bspf/"+Last_M7_BSPFactoryFile);
+                M7_load_BSPF_File(instpath+"/DtbUserWorkArea/M7Class_bspf/"+Last_M7_BSPFactoryFile+".bspf");
                 ui->M7_Generate_pushButton->setText("Save and Generate "+fi.baseName()+".dtb");
                 update_status_bar("BSP Factory : Loaded file "+Last_M7_BSPFactoryFile+".dtb");
             }

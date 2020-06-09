@@ -63,19 +63,18 @@ QString M7_getvalue(QString strKey, QSettings *settings , QString entry)
 void NOVAembed::M7_load_BSPF_File(QString fileName)
 {
 QString strKeyFunc("M7_IOMUX/");
-QSettings * func_settings = 0;
-
-    std::cout << fileName.toLatin1().constData() << "\n" << std::flush;
+    //std::cout << "M7_load_BSPF_File called\n" << std::flush;
 
     on_M7_Clear_pushButton_clicked();
-    func_settings = new QSettings( fileName+".bspf", QSettings::IniFormat );
+    QSettings *func_settings = new QSettings( fileName, QSettings::IniFormat );
     if ( M7_getvalue(strKeyFunc, func_settings , "M7_GPIO3_A1_comboBox") == "SPI_TXD" )
     {
         on_M7_SPI1_checkBox_toggled(true);
         if ( M7_getvalue(strKeyFunc, func_settings , "M7_SPIdev_checkBox") == "false" )
             ui->M7_SPIdev_checkBox->setChecked(false);
         else
-            ui->M7_SPIdev_checkBox->setChecked(true);
+            ui->M7_SPIdev_checkBox->setChecked(true);        on_M7_I2C2_checkBox_toggled(true);
+
     }
     else
     {
@@ -84,12 +83,15 @@ QSettings * func_settings = 0;
     }
     if ( M7_getvalue(strKeyFunc, func_settings , "M7_GPIO2_D1_comboBox") == "SDA" )
     {
+        //std::cout << "I2C Enabled\n" << std::flush;
         on_M7_I2C2_checkBox_toggled(true);
         QString speed = M7_getvalue(strKeyFunc, func_settings , "M7_I2C2Speed");
-        std::cout << speed.toLatin1().constData() << "\n" << std::flush;
-
+        //std::cout << speed.toLatin1().constData() << "\n" << std::flush;
         ui->M7_I2C2Speed_lineEdit->setText(M7_getvalue(strKeyFunc, func_settings , "M7_I2C2Speed"));
     }
+    else
+        on_M7_I2C2_checkBox_toggled(false);
+
     if ( M7_getvalue(strKeyFunc, func_settings , "M7_GPIO3_A4_comboBox") == "UART1_TX" )
     {
         ui->M7_UART1_checkBox->setChecked(true);
@@ -184,7 +186,8 @@ void NOVAembed::on_M7_Load_pushButton_clicked()
         return;
     else
     {
-        on_M7_Clear_pushButton_clicked();
+        //std::cout << "on_M7_Load_pushButton_clicked\n" << std::flush;
+        //on_M7_Clear_pushButton_clicked();
         M7_load_BSPF_File(fileName);
         update_status_bar("File "+Last_M7_BSPFactoryFile+" loaded");
         QFileInfo fi(fileName);
@@ -392,8 +395,10 @@ void NOVAembed::on_M7_SPI1_checkBox_toggled(bool checked)
 
 void NOVAembed::on_M7_I2C2_checkBox_toggled(bool checked)
 {
+
     if ( checked )
     {
+        //std::cout << "Checked\n" << std::flush;
         ui->M7_I2C2_checkBox->setChecked(true);
         ui->M7_I2C2Speed_lineEdit->setEnabled(true);
         M7_GPIO2_D1_comboBox="SDA";
@@ -401,6 +406,7 @@ void NOVAembed::on_M7_I2C2_checkBox_toggled(bool checked)
     }
     else
     {
+        //std::cout << "UnChecked\n" << std::flush;
         ui->M7_I2C2_checkBox->setChecked(false);
         ui->M7_I2C2Speed_lineEdit->setEnabled(false);
         M7_GPIO2_D1_comboBox="GPIO2_D1";
